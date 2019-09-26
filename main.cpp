@@ -2,9 +2,9 @@
 // Created by leobellaera on 25/9/19.
 //
 
-#include <iostream>
+#include "CfgFactory.h"
 
 int main() {
-    std::cout<< "LEO\n";
-    return 0;
+    CfgFactory f("config.cfg");
+    f.printConfig();
 }
