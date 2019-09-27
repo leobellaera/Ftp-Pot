@@ -14,7 +14,7 @@
 
 Socket::Socket(const char* host, const char* service) :
     fd(-1) {
-    if (this->_connect(host, service) == 1) {
+    if (this->connect(host, service) == 1) {
         throw SocketException(INIT_ERROR_MSG);
     }
 }
@@ -27,7 +27,7 @@ Socket::Socket(Socket &&other) noexcept {
     other.fd = -1;
 }
 
-int Socket::_connect(const char* host, const char* service) {
+int Socket::connect(const char* host, const char* service) {
     struct addrinfo *result = nullptr;
     int s = this->getAddressInfo(&result, host, service);
     if (s != 0) {
@@ -53,7 +53,7 @@ bool Socket::establishConnection(addrinfo* result) {
         if (fd == -1) {
             std::cerr << "Error: " << strerror(errno) << std::endl;
         } else {
-            s = connect(fd, ptr->ai_addr, ptr->ai_addrlen);
+            s = ::connect(fd, ptr->ai_addr, ptr->ai_addrlen);
             if (s == -1) {
                 std::cerr << "Error: " << strerror(errno) << std::endl;
             }
@@ -104,7 +104,7 @@ int Socket::recvMessage(char* buffer, int size) {
 void Socket::close() {
     if (fd != -1) {
         shutdown(fd, SHUT_RDWR);
-        close(fd);
+        ::close(fd);
     }
 }
 

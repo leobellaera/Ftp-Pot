@@ -9,7 +9,7 @@
 class Socket {
 private:
     int fd;
-    int _connect(const char* host, const char* service);
+    int connect(const char* host, const char* service);
     bool establishConnection(addrinfo* result);
     int getAddressInfo(struct addrinfo **addrinfo_ptr, const char* host, const char* service);
 public:

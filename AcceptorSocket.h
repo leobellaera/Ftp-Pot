@@ -12,8 +12,8 @@ private:
     int fd;
     int getAddressInfo(struct addrinfo **addrinfo_ptr, char* service);
     int bindAndListen(int backlog, char* service);
-    int _listen(int backlog);
-    int _bind(struct addrinfo* ptr);
+    int listen(int backlog);
+    int bind(struct addrinfo* ptr);
 public:
     AcceptorSocket(int backlog, char* service);
     Socket acceptClient();

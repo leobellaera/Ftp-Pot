@@ -42,19 +42,19 @@ int AcceptorSocket::bindAndListen(int backlog, char* service) {
         freeaddrinfo(ptr);
         return 1;
     }
-    if (_bind(ptr) == 1) {
+    if (bind(ptr) == 1) {
         freeaddrinfo(ptr);
         return 1;
     }
     freeaddrinfo(ptr);
-    if (_listen(backlog) == 1) {
+    if (listen(backlog) == 1) {
         return 1;
     }
     return 0;
 }
 
-int AcceptorSocket::_bind(struct addrinfo* ptr) {
-    int s = bind(fd, ptr->ai_addr, ptr->ai_addrlen);
+int AcceptorSocket::bind(struct addrinfo* ptr) {
+    int s = ::bind(fd, ptr->ai_addr, ptr->ai_addrlen);
     if (s == -1) {
         std::cerr << "Error: " << strerror(errno) << std::endl;
         return 1;
@@ -62,8 +62,8 @@ int AcceptorSocket::_bind(struct addrinfo* ptr) {
     return 0;
 }
 
-int AcceptorSocket::_listen(int listen_amount) {
-    int s = listen(fd, listen_amount);
+int AcceptorSocket::listen(int backlog) {
+    int s = ::listen(fd, backlog);
     if (s == -1) {
         std::cerr << "Error: " << strerror(errno) << std::endl;
         return 1;
