@@ -8,7 +8,7 @@
 
 #define QUIT_COMMAND "QUIT"
 
-FtpClient::FtpClient(const char* host, const char* service) :  //cuando creemos una instancia hacer try catch
+FtpClient::FtpClient(const char* host, const char* service) : //puede lanzar excepcion!!
     proxy(host, service) {}
 
 void FtpClient::run() {

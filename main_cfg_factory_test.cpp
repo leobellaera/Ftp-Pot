@@ -2,9 +2,10 @@
 // Created by leobellaera on 25/9/19.
 //
 
-#include "CfgFactory.h"
+#include "ConfigMapBuilder.h"
 
 int main() {
-    CfgFactory f("config.cfg");
+    ConfigMapBuilder f("config.cfg");
     f.printConfig();
+    return 0;
 }

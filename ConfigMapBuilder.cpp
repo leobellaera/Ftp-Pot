@@ -2,18 +2,18 @@
 // Created by leobellaera on 25/9/19.
 //
 
-#include "CfgFactory.h"
+#include "ConfigMapBuilder.h"
 #include <iostream> //para debugging
 #include <sstream>
 #define DELIM_CHAR '='
 
-CfgFactory::CfgFactory(char* file_path) {
+ConfigMapBuilder::ConfigMapBuilder(char* file_path) {
     file.open(file_path, std::ifstream::in);
     this->buildMap();
     file.close();
 }
 
-void CfgFactory::buildMap() {
+void ConfigMapBuilder::buildMap() {
     while (!file.eof()) {
         std::string aux;
         std::string key;
@@ -28,8 +28,13 @@ void CfgFactory::buildMap() {
     }
 }
 
+std::map<std::string,std::string>& ConfigMapBuilder::getMap(){
+    return data;
+}
 
-void CfgFactory::printConfig(){ //Para debuggeo
+ConfigMapBuilder::~ConfigMapBuilder() {}
+
+void ConfigMapBuilder::printConfig() {
     std::map<std::string, std::string>::iterator it = data.begin();
     while (it != data.end()) {
         std::string key = it->first;
@@ -38,6 +43,3 @@ void CfgFactory::printConfig(){ //Para debuggeo
         it++;
     }
 }
-
-CfgFactory::~CfgFactory() {}
-
