@@ -14,7 +14,7 @@
 #define INIT_ERROR_MSG "Error occurred while trying to bind and listen"
 #define ACCEPT_ERROR_MSG "Error occurred while trying to accept client"
 
-AcceptorSocket::AcceptorSocket(int backlog, char* service) :
+AcceptorSocket::AcceptorSocket(int backlog, const char* service) :
     fd(-1) {
     if (this->bindAndListen(backlog, service) == 1) {
         throw SocketException(INIT_ERROR_MSG);
@@ -29,7 +29,7 @@ Socket AcceptorSocket::acceptClient() {
     return std::move(Socket(peer_fd));
 }
 
-int AcceptorSocket::bindAndListen(int backlog, char* service) {
+int AcceptorSocket::bindAndListen(int backlog, const char* service) {
     struct addrinfo *ptr = nullptr;
     int s = this->getAddressInfo(&ptr, service);
     if (s != 0) {
@@ -71,7 +71,7 @@ int AcceptorSocket::listen(int backlog) {
     return 0;
 }
 
-int AcceptorSocket::getAddressInfo(struct addrinfo **addrinfo_ptr, char* service) {
+int AcceptorSocket::getAddressInfo(struct addrinfo **addrinfo_ptr, const char* service) {
     struct addrinfo hints;
     memset(&hints, 0, sizeof(struct addrinfo));
     hints.ai_family = AF_INET;

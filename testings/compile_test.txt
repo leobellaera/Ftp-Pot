@@ -1,0 +1,2 @@
+g++ -std=c++11 -ggdb -pedantic -Wall -o main_server.exe main_server_test.cpp AcceptorSocket.cpp Socket.cpp
+g++ -std=c++11 -ggdb -pedantic -Wall -o main_client.exe main_client_test.cpp FtpClient.cpp ClientProxy.cpp Socket.cpp

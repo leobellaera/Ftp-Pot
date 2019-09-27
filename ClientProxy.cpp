@@ -13,18 +13,19 @@ ClientProxy::ClientProxy(const char* host, const char* service) :
 
 bool ClientProxy::executeCommand(std::string &command, std::string &answer) {
     answer.clear(); //string content remove
-    command.append(MSG_DELIM);
+    command.append(1, MSG_DELIM);
     char received_char = '\0';
     try {
         skt.sendMessage(command.c_str(), command.length());
         while (received_char != MSG_DELIM) {
             skt.recvMessage(&received_char, 1);
-            answer.append(&received_char, 1);
+            answer.append(1, received_char);
         }
     } catch (const SocketException &e) {
         std::cerr << e.what() << std::endl;
         return false;
     }
+    return true;
 }
 
 ClientProxy::~ClientProxy() {}

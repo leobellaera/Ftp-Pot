@@ -20,7 +20,7 @@ void FtpClient::run() {
         if (!proxy.executeCommand(command, answer)) {
             return;
         }
-        std::cout<<answer;
+        std::cout << answer << std::endl;
         if (command == QUIT_COMMAND) {
             return;
         }
