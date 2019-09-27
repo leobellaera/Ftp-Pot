@@ -14,10 +14,10 @@ private:
     int getAddressInfo(struct addrinfo **addrinfo_ptr, const char* host, const char* service);
 public:
     Socket(const char* host, const char* service);
-    Socket(Socket &&other) noexcept;
     explicit Socket(int fd);
-    int sendMessage(char* buffer, int size);
-    int recvMessage(char* buffer, int size);
+    Socket(Socket &&other) noexcept;
+    void sendMessage(const char* buffer, int size);
+    void recvMessage(char* buffer, int size);
     void close();
     ~Socket();
 };

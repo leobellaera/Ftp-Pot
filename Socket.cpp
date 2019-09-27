@@ -10,7 +10,9 @@
 #include <unistd.h>
 #include <cstdlib>
 
-#define INIT_ERROR_MSG "Error happened while trying to establish connection"
+#define INIT_ERROR_MSG "Error occurred while trying to establish connection"
+#define SEND_ERROR_MSG "Error occurred while trying to send message"
+#define RECV_ERROR_MSG "Error occurred while trying to receive message"
 
 Socket::Socket(const char* host, const char* service) :
     fd(-1) {
@@ -73,32 +75,30 @@ int Socket::getAddressInfo(struct addrinfo **addrinfo_ptr, const char* host, con
     return getaddrinfo(host, service, &hints, addrinfo_ptr);
 }
 
-int Socket::sendMessage(char* buffer, int size) {
+void Socket::sendMessage(const char* buffer, int size) { //quizas habria q lanzar error y cambiar la firma a void
     int sent = 0;
     int s = 0;
     while (sent < size) {
         s = send(fd, &buffer[sent], size - sent, MSG_NOSIGNAL);
         if (s == 0 || s == -1) {
-            return s;
+            throw SocketException(SEND_ERROR_MSG);
         } else {
             sent += s;
         }
     }
-    return sent;
 }
 
-int Socket::recvMessage(char* buffer, int size) {
+void Socket::recvMessage(char* buffer, int size) {
     int received = 0;
     int s = 0;
     while (received < size) {
         s = recv(fd, &buffer[received], size-received, 0);
         if (s == 0 || s == -1) {
-            return s;
+            throw SocketException(RECV_ERROR_MSG);
         } else {
             received += s;
         }
     }
-    return received;
 }
 
 void Socket::close() {

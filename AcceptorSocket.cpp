@@ -11,8 +11,8 @@
 #include <cstring>
 #include <iostream>
 
-#define INIT_ERROR_MSG "Error happened while trying to bind and listen"
-#define ACCEPT_ERROR_MSG "Error happened while trying to accept client"
+#define INIT_ERROR_MSG "Error occurred while trying to bind and listen"
+#define ACCEPT_ERROR_MSG "Error occurred while trying to accept client"
 
 AcceptorSocket::AcceptorSocket(int backlog, char* service) :
     fd(-1) {
