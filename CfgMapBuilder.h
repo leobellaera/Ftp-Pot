@@ -2,24 +2,24 @@
 // Created by leobellaera on 25/9/19.
 //
 
-#ifndef TP_CONFIGMAPBUILDER_H
-#define TP_CONFIGMAPBUILDER_H
+#ifndef TP_CFGMAPBUILDER_H
+#define TP_CFGMAPBUILDER_H
 
 #include <fstream>
 #include <map>
 #include <string>
 
-class ConfigMapBuilder {
+class CfgMapBuilder {
 private:
     std::ifstream file;
     std::map<std::string,std::string> data;
     void buildMap();
 public:
-    ConfigMapBuilder(char* file_path);
+    CfgMapBuilder(const char* file_path);
     void printConfig();
     std::map<std::string,std::string>& getMap();
-    ~ConfigMapBuilder();
+    ~CfgMapBuilder();
 };
 
 
-#endif //TP_CONFIGMAPBUILDER_H
+#endif //TP_CFGMAPBUILDER_H

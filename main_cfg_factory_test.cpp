@@ -2,10 +2,10 @@
 // Created by leobellaera on 25/9/19.
 //
 
-#include "ConfigMapBuilder.h"
+#include "CfgMapBuilder.h"
 
 int main() {
-    ConfigMapBuilder f("config.cfg");
+    CfgMapBuilder f("config.cfg");
     f.printConfig();
     return 0;
 }

@@ -2,18 +2,18 @@
 // Created by leobellaera on 25/9/19.
 //
 
-#include "ConfigMapBuilder.h"
-#include <iostream> //para debugging
+#include "CfgMapBuilder.h"
+#include <iostream> //to printConfig
 #include <sstream>
 #define DELIM_CHAR '='
 
-ConfigMapBuilder::ConfigMapBuilder(char* file_path) {
+CfgMapBuilder::CfgMapBuilder(const char* file_path) {
     file.open(file_path, std::ifstream::in);
     this->buildMap();
     file.close();
 }
 
-void ConfigMapBuilder::buildMap() {
+void CfgMapBuilder::buildMap() {
     while (!file.eof()) {
         std::string aux;
         std::string key;
@@ -28,13 +28,13 @@ void ConfigMapBuilder::buildMap() {
     }
 }
 
-std::map<std::string,std::string>& ConfigMapBuilder::getMap(){
+std::map<std::string,std::string>& CfgMapBuilder::getMap(){
     return data;
 }
 
-ConfigMapBuilder::~ConfigMapBuilder() {}
+CfgMapBuilder::~CfgMapBuilder() {}
 
-void ConfigMapBuilder::printConfig() {
+void CfgMapBuilder::printConfig() {
     std::map<std::string, std::string>::iterator it = data.begin();
     while (it != data.end()) {
         std::string key = it->first;

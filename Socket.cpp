@@ -105,6 +105,7 @@ void Socket::close() {
     if (fd != -1) {
         shutdown(fd, SHUT_RDWR);
         ::close(fd);
+        fd = -1;
     }
 }
 
