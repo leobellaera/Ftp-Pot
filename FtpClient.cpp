@@ -6,13 +6,12 @@
 #include <iostream>
 #include <string>
 
-#define QUIT_COMMAND 'QUIT'
+#define QUIT_COMMAND "QUIT"
 
 FtpClient::FtpClient(const char* host, const char* service) :  //cuando creemos una instancia hacer try catch
     proxy(host, service) {}
 
 void FtpClient::run() {
-    bool keep_running = true;
     std::string command;
     std::string answer;
     while (true) {

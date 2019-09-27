@@ -12,7 +12,7 @@ class LoginOrganizer {
         std::string user;
         std::string pw;
     public:
-        bool LoginOrganizer::passwordwIsCorrect(std::string password) {
+        bool LoginOrganizer::passwordIsCorrect(std::string password) {
             if (password != pw) {
                 return false;
             }

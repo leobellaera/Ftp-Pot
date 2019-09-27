@@ -17,5 +17,4 @@ public:
     ~ClientProxy();
 };
 
-
 #endif //TP_CLIENTPROXY_H
