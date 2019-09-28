@@ -17,7 +17,7 @@ void FtpClient::run() {
     while (true) {
         std::getline(std::cin, command);
         if (std::cin.eof()) break;
-        if (!proxy.executeCommand(command, answer)) { //podria imprimir error x cout
+        if (!proxy.executeCommand(command, answer)) {
             return;
         }
         std::cout << answer << std::endl;

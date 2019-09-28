@@ -18,7 +18,7 @@ private:
     std::map<std::string,std::string> &cfg;
     Login login;
     DirectoryOrganizer& dir_organizer;
-    //Socket& skt;
+    Socket& skt;
     //ServerProxy
 public:
     ThClient(/*Socket& skt,*/std::map<std::string,std::string>& cfg, DirectoryOrganizer& dir_org);
