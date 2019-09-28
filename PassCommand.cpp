@@ -9,8 +9,8 @@
 
 PassCommand::PassCommand(std::string& pass, std::map<std::string,std::string>& cfg, Login& login) :
     cfg(cfg),
-    login(login),
-    pass(pass){}
+    pass(pass),
+    login(login) {}
 
 std::string PassCommand::execute() {
     login.enterPassword(pass);

@@ -8,8 +8,9 @@
 
 int main() {
     CfgMapBuilder map_builder("config.cfg");
-    Thread *thread;
-    thread = new ThClient(map_builder.getMap());
+    Thread* thread;
+    DirectoryOrganizer d;
+    thread = new ThClient(map_builder.getMap(), d);
     thread->start();
     thread->join();
     delete thread;

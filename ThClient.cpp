@@ -8,9 +8,10 @@
 
 #define QUIT_COMMAND "QUIT"
 
-ThClient::ThClient(/*Socket& skt,*/ std::map<std::string,std::string> &cfg) :
+ThClient::ThClient(/*Socket& skt,*/ std::map<std::string,std::string> &cfg, DirectoryOrganizer& dir_org) :
     cfg(cfg),
-    login(cfg) {}
+    login(cfg),
+    dir_organizer(dir_org) {}
 
 void ThClient::run() {
     /* esto despues se realizara mediante socket*/
@@ -19,8 +20,8 @@ void ThClient::run() {
         std::getline(std::cin, input);
         //***********************************
 
-        Command* command = Command::make_command(cfg, input, login);
-        std::string &answer = command->execute();
+        Command* command = Command::make_command(cfg, input, login, dir_organizer);
+        std::string answer = command->execute();
         std::cout << answer << std::endl; //esto despues sera un svproxy.sendAnswer
         delete command;
         if (input == QUIT_COMMAND) {

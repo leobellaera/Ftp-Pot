@@ -17,10 +17,11 @@ class ThClient : public Thread {
 private:
     std::map<std::string,std::string> &cfg;
     Login login;
+    DirectoryOrganizer& dir_organizer;
     //Socket& skt;
     //ServerProxy
 public:
-    explicit ThClient(/*Socket& skt,*/std::map<std::string,std::string>& cfg); // tambien recibe ' *Directories& d '
+    ThClient(/*Socket& skt,*/std::map<std::string,std::string>& cfg, DirectoryOrganizer& dir_org);
     void run() override;
     ~ThClient();
 };

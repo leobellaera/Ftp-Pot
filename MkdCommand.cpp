@@ -20,7 +20,7 @@ std::string MkdCommand::execute() {
     if (!login.userIsLogged()) {
         return cfg.find(UNLOGGED_KEY)->second;
     } else {
-        if (!dir_organizer.removeDir(dir_name)) {
+        if (!dir_organizer.makeDir(dir_name)) {
             return cfg.find(MKD_FAIL_KEY)->second;
         } else {
             return cfg.find(MKD_SUCCESS_KEY)->second;
