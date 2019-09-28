@@ -17,7 +17,7 @@ private:
 public:
     explicit HelpCommand(std::map<std::string,std::string> &cfg, Login& login);
     std::string& execute() override;
-    ~HelpCommand();
+    ~HelpCommand() override;
 };
 
 #endif //TP_HELPCOMMAND_H

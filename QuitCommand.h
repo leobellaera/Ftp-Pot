@@ -15,7 +15,7 @@ private:
 public:
     explicit QuitCommand(std::map<std::string,std::string> &cfg);
     std::string& execute() override;
-    ~QuitCommand();
+    ~QuitCommand() override;
 };
 
 #endif //TP_QUITCOMMAND_H

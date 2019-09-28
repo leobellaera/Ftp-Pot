@@ -3,3 +3,18 @@
 //
 
 #include "DirectoryOrganizer.h"
+
+DirectoryOrganizer::DirectoryOrganizer() {}
+
+bool DirectoryOrganizer::makeDir(std::string name) {
+    return directories.emplace(name).second;
+}
+
+std::string DirectoryOrganizer::getDirectories() {
+    std::string ret;
+    for (const auto & dir : directories) {
+        ret.append(dir);
+        ret.append("\n");
+    }
+    return std::move(ret);
+}

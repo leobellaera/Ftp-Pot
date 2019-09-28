@@ -16,7 +16,7 @@ private:
 public:
     explicit PwdCommand(std::map<std::string,std::string> &cfg, Login& login);
     std::string& execute() override;
-    ~PwdCommand();
+    ~PwdCommand() override;
 
 };
 

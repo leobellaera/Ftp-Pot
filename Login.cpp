@@ -9,9 +9,9 @@
 #define LOGGED_STAGE 2
 
 #define USER_KEY "user"
-#define PASS_KEY "pass"
+#define PASS_KEY "password"
 
-#define USER_COMMAND "COMMAND"
+#define USER_COMMAND "USER"
 #define PASS_COMMAND "PASS"
 
 Login::Login(std::map<std::string,std::string> &cfg) :

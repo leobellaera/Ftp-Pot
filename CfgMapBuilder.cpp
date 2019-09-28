@@ -33,13 +33,3 @@ std::map<std::string,std::string>& CfgMapBuilder::getMap(){
 }
 
 CfgMapBuilder::~CfgMapBuilder() {}
-
-void CfgMapBuilder::printConfig() {
-    std::map<std::string, std::string>::iterator it = data.begin();
-    while (it != data.end()) {
-        std::string key = it->first;
-        std::string value = it->second;
-        std::cout << key << " : " << value << std::endl;
-        it++;
-    }
-}

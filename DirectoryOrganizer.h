@@ -10,11 +10,11 @@
 
 class DirectoryOrganizer {
 private:
-    std::set<std::string> dirs;
+    std::set<std::string> directories;
 public:
     DirectoryOrganizer();
     bool makeDir(std::string name);
-    std::set<std::string> getDirectories();
+    std::string getDirectories();
 };
 
 

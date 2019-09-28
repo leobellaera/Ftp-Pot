@@ -16,7 +16,7 @@ private:
 public:
     UserCommand(std::string& command, std::map<std::string,std::string>& cfg, Login& login);
     std::string& execute() override;
-    ~UserCommand();
+    ~UserCommand() override;
 };
 
 #endif //TP_USERCOMMAND_H

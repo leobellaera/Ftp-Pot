@@ -16,7 +16,7 @@ private:
 public:
     explicit UnknownCommand(std::map<std::string, std::string> &cfg, Login& login);
     std::string& execute() override;
-    ~UnknownCommand();
+    ~UnknownCommand() override;
 };
 
 

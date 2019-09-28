@@ -8,13 +8,14 @@
 #include "Socket.h"
 #include "FtpServer.h"
 #include "Thread.h"
+#include "DirectoryOrganizer.h"
 #include "Login.h"
 #include <string>
 #include <map>
 
 class ThClient : public Thread {
 private:
-    std::map<std::string,std::string>& cfg;
+    std::map<std::string,std::string> &cfg;
     Login login;
     //Socket& skt;
     //ServerProxy

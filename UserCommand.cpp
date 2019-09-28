@@ -8,7 +8,6 @@
 
 UserCommand::UserCommand(std::string& command, std::map<std::string,std::string>& cfg, Login& login) :
     answer(cfg.find(USER_KEY)->second) {
-    login.updateStage(command);
 }
 
 std::string& UserCommand::execute() {

@@ -16,10 +16,8 @@ private:
     void buildMap();
 public:
     CfgMapBuilder(const char* file_path);
-    void printConfig();
     std::map<std::string,std::string>& getMap();
     ~CfgMapBuilder();
 };
-
 
 #endif //TP_CFGMAPBUILDER_H

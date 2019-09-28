@@ -42,16 +42,18 @@ Command* Command::make_command(std::map<std::string,std::string>& cfg, std::stri
     } else if (first_arg == PWD_COMMAND) {
         return new PwdCommand(cfg, login);
 
-    /*} else if (first_arg == MKD_COMMAND) {
+    } else if (first_arg == MKD_COMMAND) {
         return new MkdCommand(command, cfg, dir_organizer);
 
     } else if (first_arg == RMD_COMMAND){
         return new RmdCommand(command, cfg, dir_organizer);
 
     } else if (first_arg == LIST_COMMAND) {
-        return new ListCommand(command, cfg, dir_organizer);*/
+        return new ListCommand(command, cfg, dir_organizer);
 
     } else {
         return new UnknownCommand(cfg, login);
     }
 }
+
+Command::~Command() {}

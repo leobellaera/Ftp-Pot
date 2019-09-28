@@ -10,7 +10,6 @@
 PassCommand::PassCommand(std::string& command, std::map<std::string,std::string>& cfg, Login& login) :
     cfg(cfg),
     login(login) {
-    login.updateStage(command);
 }
 
 std::string& PassCommand::execute() {
