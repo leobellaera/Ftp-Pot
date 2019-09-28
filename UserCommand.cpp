@@ -6,12 +6,14 @@
 
 #define USER_KEY "passRequired"
 
-UserCommand::UserCommand(std::string& command, std::map<std::string,std::string>& cfg, Login& login) :
-    answer(cfg.find(USER_KEY)->second) {
-}
+UserCommand::UserCommand(std::string &user, std::map<std::string,std::string> &cfg, Login& login) :
+    user(user),
+    cfg(cfg),
+    login(login) {}
 
-std::string& UserCommand::execute() {
-    return answer;
+std::string UserCommand::execute() {
+    login.enterUser(user);
+    return cfg.find(USER_KEY)->second;
 }
 
 UserCommand::~UserCommand() {}

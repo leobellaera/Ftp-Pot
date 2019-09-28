@@ -12,10 +12,12 @@
 
 class UserCommand : public Command {
 private:
-    std::string& answer;
+    std::string& user;
+    std::map<std::string,std::string> &cfg;
+    Login& login;
 public:
-    UserCommand(std::string& command, std::map<std::string,std::string>& cfg, Login& login);
-    std::string& execute() override;
+    UserCommand(std::string &user, std::map<std::string,std::string> &cfg, Login& login);
+    std::string execute() override;
     ~UserCommand() override;
 };
 

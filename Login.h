@@ -16,8 +16,10 @@ private:
     std::string pass;
 public:
     explicit Login(std::map<std::string, std::string> &cfg);
-    bool logged();
-    void updateStage(std::string& command);
+    bool userIsLogged();
+    void enterUser(std::string& user);
+    void enterPassword(std::string& pass);
+    void resetIfNotLogged();
     ~Login();
 };
 

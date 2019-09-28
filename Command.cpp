@@ -11,6 +11,9 @@
 #include "HelpCommand.h"
 #include "PwdCommand.h"
 #include "UnknownCommand.h"
+#include "MkdCommand.h"
+#include "RmdCommand.h"
+#include "ListCommand.h"
 
 #define USER_COMMAND "USER"
 #define PASS_COMMAND "PASS"
@@ -22,13 +25,15 @@
 #define MKD_COMMAND "MKD"
 #define RMD_COMMAND "RMD"
 
-Command* Command::make_command(std::map<std::string,std::string>& cfg, std::string& command, Login& login) {
+Command* Command::make_command(std::map<std::string,std::string>& cfg, std::string& command,
+        Login& login, DirectoryOrganizer& dir_org) {
     std::string first_arg = command.substr(0, command.find(' '));
+    std::string second_arg = command.substr(command.find(' ') + 1, command.length());
     if (first_arg == USER_COMMAND) {
-        return new UserCommand(command, cfg, login);
+        return new UserCommand(second_arg, cfg, login);
 
     } else if (first_arg == PASS_COMMAND) {
-        return new PassCommand(command, cfg, login);
+        return new PassCommand(second_arg,cfg, login);
 
     } else if (first_arg == SYST_COMMAND) {
         return new SystCommand(cfg, login);
@@ -42,14 +47,14 @@ Command* Command::make_command(std::map<std::string,std::string>& cfg, std::stri
     } else if (first_arg == PWD_COMMAND) {
         return new PwdCommand(cfg, login);
 
-    /*} else if (first_arg == MKD_COMMAND) {
-        return new MkdCommand(command, cfg, dir_organizer);
+    } else if (first_arg == MKD_COMMAND) {
+        return new MkdCommand(second_arg, cfg, login, dir_org);
 
     } else if (first_arg == RMD_COMMAND){
-        return new RmdCommand(command, cfg, dir_organizer);
+        return new RmdCommand(second_arg, cfg, login, dir_org);
 
     } else if (first_arg == LIST_COMMAND) {
-        return new ListCommand(command, cfg, dir_organizer);*/
+        return new ListCommand(cfg, login, dir_org);
 
     } else {
         return new UnknownCommand(cfg, login);

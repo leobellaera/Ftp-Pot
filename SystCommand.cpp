@@ -11,12 +11,14 @@ SystCommand::SystCommand(std::map<std::string, std::string> &cfg, Login& login) 
     cfg(cfg),
     login(login) {}
 
-std::string& SystCommand::execute() {
-    if (login.logged()) {
+std::string SystCommand::execute() {
+    login.resetIfNotLogged();
+    if (login.userIsLogged()) {
         return cfg.find(SYST_KEY)->second;
     } else {
         return cfg.find(UNLOGGED_KEY)->second;
     }
+
 }
 
 SystCommand::~SystCommand() {}

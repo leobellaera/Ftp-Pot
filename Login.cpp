@@ -20,26 +20,26 @@ Login::Login(std::map<std::string,std::string> &cfg) :
     pass = cfg.find(PASS_KEY)->second;
 }
 
-bool Login::logged() {
+bool Login::userIsLogged() {
     return (stage == LOGGED_STAGE);
 }
 
-void Login::updateStage(std::string& command) {
-    std::string first_arg = command.substr(0, command.find(' '));
-    std::string second_arg = command.substr(command.find(' ') + 1, command.length());
-    if (first_arg == USER_COMMAND) {
+void Login::resetIfNotLogged() {
+    if (stage != LOGGED_STAGE) {
         stage = USER_REQUIRED_STAGE;
-        if (second_arg == user) {
-            stage = PASS_REQUIRED_STAGE;
-            return;
-        }
-    } else if (first_arg == PASS_COMMAND){
-        if (stage == PASS_REQUIRED_STAGE && second_arg == pass) {
-            stage++;
-            return;
-        }
-    } else if (stage == LOGGED_STAGE) return;
-    stage = 0;
+    }
+}
+
+void Login::enterUser(std::string& user) {
+    if (this->user == user) {
+        stage = PASS_REQUIRED_STAGE;
+    }
+}
+
+void Login::enterPassword(std::string& pass) {
+    if (this->pass == pass && stage == PASS_REQUIRED_STAGE) {
+        stage = LOGGED_STAGE;
+    }
 }
 
 Login::~Login() {}

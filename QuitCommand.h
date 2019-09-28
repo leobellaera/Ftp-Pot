@@ -11,10 +11,10 @@
 
 class QuitCommand : public Command {
 private:
-    std::string& answer;
+    std::map<std::string, std::string> &cfg;
 public:
     explicit QuitCommand(std::map<std::string,std::string> &cfg);
-    std::string& execute() override;
+    std::string execute() override;
     ~QuitCommand() override;
 };
 

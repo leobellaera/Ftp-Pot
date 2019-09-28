@@ -14,8 +14,8 @@ private:
     std::map<std::string, std::string> &cfg;
     Login& login;
 public:
-    explicit SystCommand(std::map<std::string, std::string> &cfg, Login& login);
-    std::string& execute() override;
+    SystCommand(std::map<std::string, std::string> &cfg, Login& login);
+    std::string execute() override;
     ~SystCommand() override;
 };
 

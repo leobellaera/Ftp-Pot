@@ -20,7 +20,6 @@ void ThClient::run() {
         //***********************************
 
         Command* command = Command::make_command(cfg, input, login);
-        login.updateStage(input);
         std::string &answer = command->execute();
         std::cout << answer << std::endl; //esto despues sera un svproxy.sendAnswer
         delete command;

@@ -12,8 +12,9 @@ PwdCommand::PwdCommand(std::map<std::string,std::string> &cfg, Login& login) :
     login(login) {}
 
 
-std::string& PwdCommand::execute() {
-    if (login.logged()) {
+std::string PwdCommand::execute() {
+    login.resetIfNotLogged();
+    if (login.userIsLogged()) {
         return cfg.find(PWD_KEY)->second;
     } else {
         return cfg.find(UNLOGGED_KEY)->second;

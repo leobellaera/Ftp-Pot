@@ -7,13 +7,14 @@
 #define LOGIN_SUCCESS_KEY "loginSuccess"
 #define LOGIN_FAIL_KEY "loginFailed"
 
-PassCommand::PassCommand(std::string& command, std::map<std::string,std::string>& cfg, Login& login) :
+PassCommand::PassCommand(std::string& pass, std::map<std::string,std::string>& cfg, Login& login) :
     cfg(cfg),
-    login(login) {
-}
+    login(login),
+    pass(pass){}
 
-std::string& PassCommand::execute() {
-    if (login.logged()) {
+std::string PassCommand::execute() {
+    login.enterPassword(pass);
+    if (login.userIsLogged()) {
         return cfg.find(LOGIN_SUCCESS_KEY)->second;
     } else {
         return cfg.find(LOGIN_FAIL_KEY)->second;

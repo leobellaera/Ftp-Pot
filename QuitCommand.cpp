@@ -7,10 +7,10 @@
 #define ANSWER_KEY "quitSuccess"
 
 QuitCommand::QuitCommand(std::map<std::string, std::string> &cfg) :
-   answer(cfg.find(ANSWER_KEY)->second) {}
+   cfg(cfg) {}
 
-std::string& QuitCommand::execute() {
-    return answer;
+std::string QuitCommand::execute() {
+    return cfg.find(ANSWER_KEY)->second;
 }
 
 QuitCommand::~QuitCommand() {}
