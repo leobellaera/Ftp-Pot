@@ -14,6 +14,7 @@ private:
 public:
     DirectoryOrganizer();
     bool makeDir(std::string name);
+    bool removeDir(std::string name);
     std::string getDirectories();
 };
 

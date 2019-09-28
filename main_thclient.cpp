@@ -25,6 +25,10 @@ int main() {
     if (!d.makeDir("www.google.com.ar")) {
         std::cout<<"NO SE PUEDE, YA PUSISTE ESTO\n";
     }
+    if (!d.removeDir("LEO")) {
+        std::cout<<"NO ESTA\n";
+    }
+    d.removeDir("z");
     std::cout<<d.getDirectories();
     return 0;
 }
