@@ -7,10 +7,17 @@
 
 
 #include "Command.h"
+#include <string>
+#include <map>
 
 class HelpCommand : public Command {
-
+private:
+    std::map<std::string, std::string> &cfg;
+    Login& login;
+public:
+    explicit HelpCommand(std::map<std::string,std::string> &cfg, Login& login);
+    std::string& execute() override;
+    ~HelpCommand();
 };
-
 
 #endif //TP_HELPCOMMAND_H

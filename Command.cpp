@@ -10,7 +10,7 @@
 #include "QuitCommand.h"
 #include "HelpCommand.h"
 #include "PwdCommand.h"
-#include "InvalidCommand.h"
+#include "UnknownCommand.h"
 
 #define USER_COMMAND "USER"
 #define PASS_COMMAND "PASS"
@@ -22,27 +22,25 @@
 #define MKD_COMMAND "MKD"
 #define RMD_COMMAND "RMD"
 
-Command* Command::make_command(std::map<std::string,std::string>& cfg, std::string& command) {
-    std::istringstream command_stream(command);
-    std::string first_arg;
-    std::getline(command_stream, first_arg, ' ');
+Command* Command::make_command(std::map<std::string,std::string>& cfg, std::string& command, Login& login) {
+    std::string first_arg = command.substr(0, command.find(' '));
     if (first_arg == USER_COMMAND) {
-        return new UserCommand(command, cfg);
+        return new UserCommand(command, cfg, login);
 
     } else if (first_arg == PASS_COMMAND) {
-        return new PassCommand(command, cfg);
+        return new PassCommand(command, cfg, login);
 
     } else if (first_arg == SYST_COMMAND) {
-        return new SystCommand(cfg);
+        return new SystCommand(cfg, login);
 
     } else if (first_arg == QUIT_COMMAND ) {
         return new QuitCommand(cfg);
 
     } else if (first_arg == HELP_COMMAND) {
-        return new HelpCommand(cfg);
+        return new HelpCommand(cfg, login);
 
     } else if (first_arg == PWD_COMMAND) {
-        return new PwdCommand(cfg);
+        return new PwdCommand(cfg, login);
 
     /*} else if (first_arg == MKD_COMMAND) {
         return new MkdCommand(command, cfg, dir_organizer);
@@ -54,8 +52,6 @@ Command* Command::make_command(std::map<std::string,std::string>& cfg, std::stri
         return new ListCommand(command, cfg, dir_organizer);*/
 
     } else {
-        return new InvalidCommand(cfg);
+        return new UnknownCommand(cfg, login);
     }
 }
-
-Command::~Command() {}

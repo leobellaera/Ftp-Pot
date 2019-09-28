@@ -7,14 +7,12 @@
 
 #include <map>
 #include <string>
+#include "Login.h"
 
 class Command {
-private:
 public:
-    static Command* make_command(std::map<std::string,std::string>& cfg, std::string& command);
-    virtual std::string execute() = 0;
-    ~Command();
+    static Command* make_command(std::map<std::string,std::string>& cfg, std::string& command, Login& login);
+    virtual std::string& execute() = 0;
 };
-
 
 #endif //TP_COMMAND_H

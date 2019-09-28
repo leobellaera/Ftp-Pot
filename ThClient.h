@@ -8,16 +8,14 @@
 #include "Socket.h"
 #include "FtpServer.h"
 #include "Thread.h"
+#include "Login.h"
 #include <string>
 #include <map>
-
-#define UNLOGGED 0
-#define USER_RECEIVED 1
-#define LOGGED 2
 
 class ThClient : public Thread {
 private:
     std::map<std::string,std::string>& cfg;
+    Login login;
     //Socket& skt;
     //ServerProxy
 public:
@@ -26,9 +24,4 @@ public:
     ~ThClient();
 };
 
-
 #endif //TP_THCLIENT_H
-
-
-//LoginChecker ifnotcommandavailable(command) clientNotLogged
-//LoginChecker log_checker; esto vivira adentro de la clase "Command"

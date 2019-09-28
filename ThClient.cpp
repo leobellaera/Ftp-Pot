@@ -9,7 +9,8 @@
 #define QUIT_COMMAND "QUIT"
 
 ThClient::ThClient(/*Socket& skt,*/ std::map<std::string,std::string>& cfg) :
-    cfg(cfg) {}
+    cfg(cfg),
+    login(cfg) {}
 
 void ThClient::run() {
     /* esto despues se realizara mediante socket*/
@@ -17,11 +18,11 @@ void ThClient::run() {
     std::getline(std::cin, input);
     //***********************************
 
-    Command*  command = Command::make_command(cfg, input);
-    std::string answer = command->execute();
+    Command*  command = Command::make_command(cfg, input, login);
+    std::string& answer = command->execute();
     std::cout << answer << std::endl; //esto despues sera un svproxy.sendAnswer
 
-    if (command == QUIT_COMMAND) {
+    if (input == QUIT_COMMAND) {
         return;
     }
 }

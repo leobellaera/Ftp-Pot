@@ -4,19 +4,14 @@
 
 #include "UserCommand.h"
 
-#define ANSWER_KEY "passRequired"
-#define USER_KEY "user"
+#define USER_KEY "passRequired"
 
-UserCommand::UserCommand(std::string& command, std::map<std::string,std::string>& cfg, Login) {
-    answer = cfg.find(ANSWER_KEY)->second;
-    std::string cfg_user = cfg.find(USER_KEY)->second;
-    std::string command_user = command.substr(command.find(' ') + 1, command.length());
-    if (command_user == cfg_user) {
-        login.nextStage();
-    }
+UserCommand::UserCommand(std::string& command, std::map<std::string,std::string>& cfg, Login& login) :
+    answer(cfg.find(USER_KEY)->second) {
+    login.updateStage(command);
 }
 
-std::string UserCommand::execute() {
+std::string& UserCommand::execute() {
     return answer;
 }
 

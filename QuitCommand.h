@@ -5,10 +5,17 @@
 #ifndef TP_QUITCOMMAND_H
 #define TP_QUITCOMMAND_H
 
+#include <string>
+#include <map>
+#include "Command.h"
 
-class QuitCommand {
-
+class QuitCommand : public Command {
+private:
+    std::string& answer;
+public:
+    explicit QuitCommand(std::map<std::string,std::string> &cfg);
+    std::string& execute() override;
+    ~QuitCommand();
 };
-
 
 #endif //TP_QUITCOMMAND_H
