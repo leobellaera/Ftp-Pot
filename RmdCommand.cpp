@@ -7,6 +7,9 @@
 #define RMD_SUCCESS_KEY "rmdSuccess"
 #define RMD_FAIL_KEY "rmdFailed"
 #define UNLOGGED_KEY "clientNotLogged"
+#define UNLOGGED_CODE "530 "
+#define RMD_FAIL_CODE "550 "
+#define RMD_SUCCESS_CODE "250 "
 
 RmdCommand::RmdCommand(std::string& dir_name, std::map<std::string, std::string> &cfg,
         Login& login, DirectoryOrganizer& d) :
@@ -21,9 +24,9 @@ std::string RmdCommand::execute() {
         return cfg.find(UNLOGGED_KEY)->second;
     } else {
         if (!dir_organizer.removeDir(dir_name)) {
-            return cfg.find(RMD_FAIL_KEY)->second;
+            return RMD_FAIL_CODE + cfg.find(RMD_FAIL_KEY)->second;
         } else {
-            return cfg.find(RMD_SUCCESS_KEY)->second;
+            return RMD_SUCCESS_CODE + cfg.find(RMD_SUCCESS_KEY)->second;
         }
     }
 }

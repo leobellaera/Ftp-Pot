@@ -6,6 +6,8 @@
 
 #define HELP_KEY "help"
 #define UNLOGGED_KEY "clientNotLogged"
+#define UNLOGGED_CODE "530 "
+#define HELP_CODE "214 "
 
 HelpCommand::HelpCommand(std::map<std::string,std::string> &cfg, Login& login) :
     cfg(cfg),
@@ -14,9 +16,9 @@ HelpCommand::HelpCommand(std::map<std::string,std::string> &cfg, Login& login) :
 std::string HelpCommand::execute() {
     login.resetIfNotLogged();
     if (login.userIsLogged()) {
-        return cfg.find(HELP_KEY)->second;
+        return HELP_CODE + cfg.find(HELP_KEY)->second;
     } else {
-        return cfg.find(UNLOGGED_KEY)->second;
+        return UNLOGGED_CODE + cfg.find(UNLOGGED_KEY)->second;
     }
 }
 

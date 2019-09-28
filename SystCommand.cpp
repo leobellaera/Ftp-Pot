@@ -6,6 +6,8 @@
 
 #define SYST_KEY "systemInfo"
 #define UNLOGGED_KEY "clientNotLogged"
+#define SYST_CODE "215 "
+#define UNLOGGED_CODE "530 "
 
 SystCommand::SystCommand(std::map<std::string, std::string> &cfg, Login& login) :
     cfg(cfg),
@@ -14,9 +16,9 @@ SystCommand::SystCommand(std::map<std::string, std::string> &cfg, Login& login) 
 std::string SystCommand::execute() {
     login.resetIfNotLogged();
     if (login.userIsLogged()) {
-        return cfg.find(SYST_KEY)->second;
+        return SYST_CODE + cfg.find(SYST_KEY)->second;
     } else {
-        return cfg.find(UNLOGGED_KEY)->second;
+        return UNLOGGED_CODE + cfg.find(UNLOGGED_KEY)->second;
     }
 
 }

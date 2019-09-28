@@ -5,6 +5,7 @@
 #include "UserCommand.h"
 
 #define USER_KEY "passRequired"
+#define CODE "331 "
 
 UserCommand::UserCommand(std::string &user, std::map<std::string,std::string> &cfg, Login& login) :
     user(user),
@@ -13,7 +14,7 @@ UserCommand::UserCommand(std::string &user, std::map<std::string,std::string> &c
 
 std::string UserCommand::execute() {
     login.enterUser(user);
-    return cfg.find(USER_KEY)->second;
+    return  CODE + cfg.find(USER_KEY)->second;
 }
 
 UserCommand::~UserCommand() {}

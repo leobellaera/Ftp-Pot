@@ -6,6 +6,8 @@
 
 #define LOGIN_SUCCESS_KEY "loginSuccess"
 #define LOGIN_FAIL_KEY "loginFailed"
+#define LOGIN_FAIL_CODE "530 "
+#define LOGIN_SUCCESS_CODE "230 "
 
 PassCommand::PassCommand(std::string& pass, std::map<std::string,std::string>& cfg, Login& login) :
     cfg(cfg),
@@ -15,9 +17,9 @@ PassCommand::PassCommand(std::string& pass, std::map<std::string,std::string>& c
 std::string PassCommand::execute() {
     login.enterPassword(pass);
     if (login.userIsLogged()) {
-        return cfg.find(LOGIN_SUCCESS_KEY)->second;
+        return LOGIN_SUCCESS_CODE + cfg.find(LOGIN_SUCCESS_KEY)->second;
     } else {
-        return cfg.find(LOGIN_FAIL_KEY)->second;
+        return LOGIN_FAIL_CODE + cfg.find(LOGIN_FAIL_KEY)->second;
     }
 }
 
