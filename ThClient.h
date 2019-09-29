@@ -6,8 +6,8 @@
 #define TP_THCLIENT_H
 
 #include "Socket.h"
-#include "FtpServer.h"
 #include "Thread.h"
+#include "ServerProxy.h"
 #include "DirectoryOrganizer.h"
 #include "Login.h"
 #include <string>
@@ -18,12 +18,14 @@ private:
     std::map<std::string,std::string> &cfg;
     Login login;
     DirectoryOrganizer& dir_organizer;
-    Socket& skt;
-    //ServerProxy
+    ServerProxy proxy;
+    bool finished;
+    void executeCommand(std::string& input);
 public:
-    ThClient(/*Socket& skt,*/std::map<std::string,std::string>& cfg, DirectoryOrganizer& dir_org);
+    ThClient(Socket skt, std::map<std::string,std::string>& cfg, DirectoryOrganizer& dir_org);
     void run() override;
-    ~ThClient();
+    bool isDead();
+    ~ThClient() override; //override??
 };
 
 #endif //TP_THCLIENT_H

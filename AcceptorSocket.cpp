@@ -80,9 +80,13 @@ int AcceptorSocket::getAddressInfo(struct addrinfo **addrinfo_ptr, const char* s
     return getaddrinfo(nullptr, service, &hints, addrinfo_ptr);
 }
 
-AcceptorSocket::~AcceptorSocket() {
+void AcceptorSocket::close() {
     if (fd != -1) {
         shutdown(fd, SHUT_RDWR);
-        close(fd);
+        ::close(fd);
     }
+}
+
+AcceptorSocket::~AcceptorSocket() {
+    this->close();
 }

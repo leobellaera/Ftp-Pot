@@ -17,6 +17,7 @@ private:
 public:
     AcceptorSocket(int backlog, const char* service);
     Socket acceptClient();
+    void close();
     ~AcceptorSocket();
 };
 
