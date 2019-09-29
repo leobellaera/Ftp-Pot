@@ -17,6 +17,7 @@ bool ClientProxy::executeCommand(std::string &command, std::string &answer) {
     try {
         skt.sendMessage(command.c_str(), command.length());
         this->getServerAnswer(answer);
+        command.pop_back();
     } catch (const SocketException &e) {
         return false;
     }
