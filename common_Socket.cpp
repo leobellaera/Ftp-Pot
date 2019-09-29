@@ -75,7 +75,7 @@ int Socket::getAddressInfo(struct addrinfo **addrinfo_ptr, const char* host, con
     return getaddrinfo(host, service, &hints, addrinfo_ptr);
 }
 
-void Socket::sendMessage(const char* buffer, int size) { //quizas habria q lanzar error y cambiar la firma a void
+void Socket::sendMessage(const char* buffer, int size) {
     int sent = 0;
     int s = 0;
     while (sent < size) {

@@ -19,6 +19,7 @@ bool ClientProxy::executeCommand(std::string &command, std::string &answer) {
         this->getServerAnswer(answer);
         command.pop_back();
     } catch (const SocketException &e) {
+        std::cerr << e.what() << std::endl;
         return false;
     }
     return true;
