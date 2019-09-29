@@ -13,7 +13,7 @@ int main(int argc, char* argv[]) {
     if (argc != 3) {
         std::cout<<INVALID_ARGS_AMOUNT_MSG<<std::endl;
     }
-    client_Ftp client(argv[HOST_POS], argv[SERVICE_POS]);
+    ClientFtp client(argv[HOST_POS], argv[SERVICE_POS]);
     client.run();
     return 0;
 }

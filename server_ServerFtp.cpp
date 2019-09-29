@@ -21,4 +21,4 @@ void ServerFtp::run() {
     acceptor_thread.join();
 }
 
-void ServerFtp::~ServerFtp() {}
+ServerFtp::~ServerFtp() {}

@@ -18,9 +18,7 @@ bool ClientProxy::executeCommand(std::string &command, std::string &answer) {
     try {
         skt.sendMessage(command.c_str(), command.length());
         this->getServerAnswer(answer);
-
     } catch (const SocketException &e) {
-        std::cerr << e.what() << std::endl;
         return false;
     }
     return true;

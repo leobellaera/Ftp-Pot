@@ -2,7 +2,7 @@
 // Created by leobellaera on 27/9/19.
 //
 
-#include "DirectoryOrganizer.h"
+#include "server_DirectoryOrganizer.h"
 
 DirectoryOrganizer::DirectoryOrganizer() {}
 
