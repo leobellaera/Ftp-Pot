@@ -2,7 +2,7 @@
 // Created by leobellaera on 28/9/19.
 //
 
-#include "ListCommand.h"
+#include "server_ListCommand.h"
 
 #define UNLOGGED_KEY "clientNotLogged"
 #define LIST_BEGIN_KEY "listBegin"

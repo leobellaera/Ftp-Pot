@@ -2,8 +2,8 @@
 // Created by leobellaera on 26/9/19.
 //
 
-#include "AcceptorSocket.h"
-#include "SocketException.h"
+#include "server_AcceptorSocket.h"
+#include "common_SocketException.h"
 #include <cerrno>
 #include <sys/socket.h>
 #include <netdb.h>

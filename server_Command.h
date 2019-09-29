@@ -7,8 +7,8 @@
 
 #include <map>
 #include <string>
-#include "Login.h"
-#include "DirectoryOrganizer.h"
+#include "server_Login.h"
+#include "server_DirectoryOrganizer.h"
 
 class Command {
 public:

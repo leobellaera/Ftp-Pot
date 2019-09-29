@@ -2,7 +2,7 @@
 // Created by leobellaera on 27/9/19.
 //
 
-#include "SystCommand.h"
+#include "server_SystCommand.h"
 
 #define SYST_KEY "systemInfo"
 #define UNLOGGED_KEY "clientNotLogged"

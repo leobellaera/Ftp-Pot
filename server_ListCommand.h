@@ -5,11 +5,11 @@
 #ifndef TP_LISTCOMMAND_H
 #define TP_LISTCOMMAND_H
 
-#include "Command.h"
-#include "Login.h"
+#include "server_Command.h"
+#include "server_Login.h"
 #include <map>
 #include <string>
-#include "DirectoryOrganizer.h"
+#include "server_DirectoryOrganizer.h"
 
 class ListCommand : public Command {
 private:

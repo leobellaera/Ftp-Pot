@@ -2,7 +2,7 @@
 // Created by leobellaera on 25/9/19.
 //
 
-#include "CfgMapBuilder.h"
+#include "server_CfgMapBuilder.h"
 #include <iostream> //to printConfig
 #include <sstream>
 #define DELIM_CHAR '='

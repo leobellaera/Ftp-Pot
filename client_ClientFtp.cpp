@@ -2,7 +2,7 @@
 // Created by leobellaera on 26/9/19.
 //
 
-#include "ClientFtp.h"
+#include "client_ClientFtp.h"
 #include <iostream>
 #include <string>
 

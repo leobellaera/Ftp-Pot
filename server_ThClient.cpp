@@ -2,9 +2,9 @@
 // Created by leobellaera on 27/9/19.
 //
 
-#include "ThClient.h"
-#include "Command.h"
-#include "SocketException.h"
+#include "server_ThClient.h"
+#include "server_Command.h"
+#include "common_SocketException.h"
 #include <iostream>
 
 #define QUIT_COMMAND "QUIT"

@@ -2,9 +2,9 @@
 // Created by leobellaera on 28/9/19.
 //
 
-#include "ThAcceptor.h"
-#include "SocketException.h"
-#include "ThClient.h"
+#include "server_ThAcceptor.h"
+#include "common_SocketException.h"
+#include "server_ThClient.h"
 
 ThAcceptor::ThAcceptor(DirectoryOrganizer& dir_organizer, std::map<std::string, std::string>& cfg, const char* service, int backlog) :
     acceptor_skt(backlog, service),

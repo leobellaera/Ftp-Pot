@@ -5,9 +5,9 @@
 #ifndef TP_SERVERFTP_H
 #define TP_SERVERFTP_H
 
-#include "DirectoryOrganizer.h"
-#include "ThAcceptor.h"
-#include "CfgMapBuilder.h"
+#include "server_DirectoryOrganizer.h"
+#include "server_ThAcceptor.h"
+#include "server_CfgMapBuilder.h"
 
 class ServerFtp {
 private:

@@ -5,11 +5,11 @@
 #ifndef TP_THCLIENT_H
 #define TP_THCLIENT_H
 
-#include "Socket.h"
-#include "Thread.h"
-#include "ServerProxy.h"
-#include "DirectoryOrganizer.h"
-#include "Login.h"
+#include "common_Socket.h"
+#include "server_Thread.h"
+#include "server_ServerProxy.h"
+#include "server_DirectoryOrganizer.h"
+#include "server_Login.h"
 #include <string>
 #include <map>
 

@@ -2,7 +2,7 @@
 // Created by leobellaera on 29/9/19.
 //
 
-#include "ServerFtp.h"
+#include "server_ServerFtp.h"
 #include <iostream>
 
 #define INVALID_ARGS_AMOUNT_MSG "Invalid number of arguments"

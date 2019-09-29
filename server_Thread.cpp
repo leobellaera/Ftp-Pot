@@ -2,7 +2,7 @@
 // Created by leobellaera on 19/9/19.
 //
 
-#include "Thread.h"
+#include "server_Thread.h"
 
 Thread::Thread() {}
 

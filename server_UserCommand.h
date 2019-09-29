@@ -5,8 +5,8 @@
 #ifndef TP_USERCOMMAND_H
 #define TP_USERCOMMAND_H
 
-#include "Command.h"
-#include "Login.h"
+#include "server_Command.h"
+#include "server_Login.h"
 #include <map>
 #include <string>
 

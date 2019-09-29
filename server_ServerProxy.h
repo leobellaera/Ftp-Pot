@@ -5,7 +5,7 @@
 #ifndef TP_SERVERPROXY_H
 #define TP_SERVERPROXY_H
 
-#include "Socket.h"
+#include "common_Socket.h"
 #include <string>
 
 class ServerProxy {

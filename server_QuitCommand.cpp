@@ -2,7 +2,7 @@
 // Created by leobellaera on 27/9/19.
 //
 
-#include "QuitCommand.h"
+#include "server_QuitCommand.h"
 
 #define ANSWER_KEY "quitSuccess"
 #define QUIT_CODE "221 "

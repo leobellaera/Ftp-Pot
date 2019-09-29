@@ -2,7 +2,7 @@
 // Created by leobellaera on 27/9/19.
 //
 
-#include "PwdCommand.h"
+#include "server_PwdCommand.h"
 
 #define PWD_KEY "currentDirectoryMsg"
 #define UNLOGGED_KEY "clientNotLogged"

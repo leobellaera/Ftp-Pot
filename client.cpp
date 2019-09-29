@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include "ClientFtp.h"
+#include "client_ClientFtp.h"
 
 #define INVALID_ARGS_AMOUNT_MSG "Invalid number of arguments"
 #define HOST_POS 1

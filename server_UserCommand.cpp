@@ -2,7 +2,7 @@
 // Created by leobellaera on 27/9/19.
 //
 
-#include "UserCommand.h"
+#include "server_UserCommand.h"
 
 #define USER_KEY "passRequired"
 #define CODE "331 "

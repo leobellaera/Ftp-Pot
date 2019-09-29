@@ -5,7 +5,7 @@
 #ifndef TP_PWDCOMMAND_H
 #define TP_PWDCOMMAND_H
 
-#include "Command.h"
+#include "server_Command.h"
 #include <map>
 #include <string>
 

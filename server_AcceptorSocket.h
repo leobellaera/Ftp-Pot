@@ -5,7 +5,7 @@
 #ifndef TP_ACCEPTORSOCKET_H
 #define TP_ACCEPTORSOCKET_H
 
-#include "Socket.h"
+#include "common_Socket.h"
 
 class AcceptorSocket {
 private:

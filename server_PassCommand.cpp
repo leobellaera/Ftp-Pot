@@ -2,7 +2,7 @@
 // Created by leobellaera on 27/9/19.
 //
 
-#include "PassCommand.h"
+#include "server_PassCommand.h"
 
 #define LOGIN_SUCCESS_KEY "loginSuccess"
 #define LOGIN_FAIL_KEY "loginFailed"

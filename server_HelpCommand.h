@@ -6,7 +6,7 @@
 #define TP_HELPCOMMAND_H
 
 
-#include "Command.h"
+#include "server_Command.h"
 #include <string>
 #include <map>
 

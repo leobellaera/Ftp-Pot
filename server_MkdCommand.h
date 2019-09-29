@@ -5,9 +5,9 @@
 #ifndef TP_MKDCOMMAND_H
 #define TP_MKDCOMMAND_H
 
-#include "Command.h"
-#include "Login.h"
-#include "DirectoryOrganizer.h"
+#include "server_Command.h"
+#include "server_Login.h"
+#include "server_DirectoryOrganizer.h"
 #include <map>
 #include <string>
 

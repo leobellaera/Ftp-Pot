@@ -5,8 +5,8 @@
 #ifndef TP_CLIENTFTP_H
 #define TP_CLIENTFTP_H
 
-#include "Socket.h"
-#include "ClientProxy.h"
+#include "common_Socket.h"
+#include "client_ClientProxy.h"
 
 class ClientFtp {
 private:

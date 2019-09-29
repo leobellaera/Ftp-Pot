@@ -2,7 +2,7 @@
 // Created by leobellaera on 28/9/19.
 //
 
-#include "ServerProxy.h"
+#include "server_ServerProxy.h"
 
 #define DELIM_CHAR '\n'
 

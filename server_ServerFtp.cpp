@@ -1,8 +1,8 @@
-+//
+//
 // Created by leobellaera on 26/9/19.
 //
 
-#include "ServerFtp.h"
+#include "server_ServerFtp.h"
 #include <iostream>
 
 #define STOP_SV_KEY 'q'

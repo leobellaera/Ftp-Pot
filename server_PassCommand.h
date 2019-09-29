@@ -7,8 +7,8 @@
 
 #include <string>
 #include <map>
-#include "Login.h"
-#include "Command.h"
+#include "server_Login.h"
+#include "server_Command.h"
 
 class PassCommand : public Command {
 private:

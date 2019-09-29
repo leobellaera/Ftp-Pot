@@ -2,7 +2,7 @@
 // Created by leobellaera on 27/9/19.
 //
 
-#include "HelpCommand.h"
+#include "server_HelpCommand.h"
 
 #define HELP_KEY "help"
 #define UNLOGGED_KEY "clientNotLogged"

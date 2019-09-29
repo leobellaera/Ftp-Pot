@@ -2,7 +2,7 @@
 // Created by leobellaera on 27/9/19.
 //
 
-#include "UnknownCommand.h"
+#include "server_UnknownCommand.h"
 
 #define UNKNOWN_COMMAND_KEY "unknownCommand"
 #define UNLOGGED_KEY "clientNotLogged"

@@ -2,8 +2,8 @@
 // Created by leobellaera on 26/9/19.
 //
 
-#include "ClientProxy.h"
-#include "SocketException.h"
+#include "client_ClientProxy.h"
+#include "common_SocketException.h"
 #include <vector>
 #include <iostream>
 #include <algorithm>

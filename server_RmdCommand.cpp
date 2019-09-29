@@ -2,7 +2,7 @@
 // Created by leobellaera on 28/9/19.
 //
 
-#include "RmdCommand.h"
+#include "server_RmdCommand.h"
 
 #define RMD_SUCCESS_KEY "rmdSuccess"
 #define RMD_FAIL_KEY "rmdFailed"

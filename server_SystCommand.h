@@ -5,7 +5,7 @@
 #ifndef TP_SYSTCOMMAND_H
 #define TP_SYSTCOMMAND_H
 
-#include "Command.h"
+#include "server_Command.h"
 #include <map>
 #include <string>
 

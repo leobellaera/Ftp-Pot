@@ -8,10 +8,10 @@
 #include <string>
 #include <map>
 #include <vector>
-#include "AcceptorSocket.h"
-#include "DirectoryOrganizer.h"
-#include "ThClient.h"
-#include "Thread.h"
+#include "server_AcceptorSocket.h"
+#include "server_DirectoryOrganizer.h"
+#include "server_ThClient.h"
+#include "server_Thread.h"
 
 class ThAcceptor : public Thread {
 private:

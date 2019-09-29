@@ -2,7 +2,7 @@
 // Created by leobellaera on 28/9/19.
 //
 
-#include "MkdCommand.h"
+#include "server_MkdCommand.h"
 
 #define MKD_SUCCESS_KEY "mkdSuccess"
 #define MKD_FAIL_KEY "mkdFailed"

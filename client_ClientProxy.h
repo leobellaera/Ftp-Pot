@@ -5,7 +5,7 @@
 #ifndef TP_CLIENTPROXY_H
 #define TP_CLIENTPROXY_H
 
-#include "Socket.h"
+#include "common_Socket.h"
 #include <string>
 
 class ClientProxy {

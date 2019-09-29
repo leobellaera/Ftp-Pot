@@ -3,17 +3,17 @@
 //
 
 #include <sstream>
-#include "Command.h"
-#include "UserCommand.h"
-#include "PassCommand.h"
-#include "SystCommand.h"
-#include "QuitCommand.h"
-#include "HelpCommand.h"
-#include "PwdCommand.h"
-#include "UnknownCommand.h"
-#include "MkdCommand.h"
-#include "RmdCommand.h"
-#include "ListCommand.h"
+#include "server_Command.h"
+#include "server_UserCommand.h"
+#include "server_PassCommand.h"
+#include "server_SystCommand.h"
+#include "server_QuitCommand.h"
+#include "server_HelpCommand.h"
+#include "server_PwdCommand.h"
+#include "server_UnknownCommand.h"
+#include "server_MkdCommand.h"
+#include "server_RmdCommand.h"
+#include "server_ListCommand.h"
 
 #define USER_COMMAND "USER"
 #define PASS_COMMAND "PASS"
