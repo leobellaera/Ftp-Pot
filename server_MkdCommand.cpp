@@ -10,6 +10,7 @@
 #define UNLOGGED_CODE "530 "
 #define MKD_SUCCESS_CODE "257 "
 #define MKD_FAIL_CODE "550 "
+#define DIR_DELIM '"'
 
 MkdCommand::MkdCommand(std::string dir_name, std::map<std::string, std::string> &cfg,
                        Login& login, DirectoryOrganizer& d) :
@@ -26,7 +27,10 @@ std::string MkdCommand::execute() {
         if (!dir_organizer.makeDir(dir_name)) {
             return MKD_FAIL_CODE + cfg.find(MKD_FAIL_KEY)->second;
         } else {
-            return MKD_SUCCESS_CODE + cfg.find(MKD_SUCCESS_KEY)->second;
+            std::string ans = MKD_SUCCESS_CODE;
+            ans.append(DIR_DELIM + dir_name + DIR_DELIM);
+            ans.append(' ' + cfg.find(MKD_SUCCESS_KEY)->second);
+            return ans;
         }
     }
 }

@@ -10,6 +10,7 @@
 #define UNLOGGED_CODE "530 "
 #define RMD_FAIL_CODE "550 "
 #define RMD_SUCCESS_CODE "250 "
+#define DIR_DELIM '"'
 
 RmdCommand::RmdCommand(std::string dir_name, std::map<std::string, std::string> &cfg,
                        Login& login, DirectoryOrganizer& d) :
@@ -26,7 +27,10 @@ std::string RmdCommand::execute() {
         if (!dir_organizer.removeDir(dir_name)) {
             return RMD_FAIL_CODE + cfg.find(RMD_FAIL_KEY)->second;
         } else {
-            return RMD_SUCCESS_CODE + cfg.find(RMD_SUCCESS_KEY)->second;
+            std::string ans = RMD_SUCCESS_CODE;
+            ans.append(DIR_DELIM + dir_name + DIR_DELIM);
+            ans.append(' ' + cfg.find(RMD_SUCCESS_KEY)->second);
+            return ans;
         }
     }
 }
