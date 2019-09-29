@@ -14,7 +14,7 @@ private:
 public:
     explicit ServerProxy(Socket skt);
     void receiveClientCommand(std::string& input);
-    void sendAnswerToClient(std::string& answer);
+    void sendMsgToClient(std::string& answer);
     void stopCommunication();
     ~ServerProxy();
 

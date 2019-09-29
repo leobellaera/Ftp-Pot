@@ -7,6 +7,8 @@
 #include "common_SocketException.h"
 
 #define QUIT_COMMAND "QUIT"
+#define NEW_CLIENT_CODE "230 "
+#define NEW_CLIENT_KEY "newClient"
 
 ThClient::ThClient(Socket skt, std::map<std::string,std::string> &cfg, DirectoryOrganizer& dir_org) :
     cfg(cfg),
@@ -17,6 +19,7 @@ ThClient::ThClient(Socket skt, std::map<std::string,std::string> &cfg, Directory
 
 void ThClient::run() {
     std::string input;
+    this->sendWelcomeMsgToClient();
     while (!finished) {
         input.clear();
         try {
@@ -32,10 +35,19 @@ void ThClient::run() {
     }
 }
 
+void ThClient::sendWelcomeMsgToClient() {
+    try {
+        std::string msg = NEW_CLIENT_CODE + cfg.find(NEW_CLIENT_KEY)->second;
+        proxy.sendMsgToClient(msg);
+    } catch (const SocketException& e) {
+        finished = true;
+    }
+}
+
 void ThClient::executeCommand(std::string& input) {
     Command* command = Command::make_command(cfg, input, login, dir_organizer);
     std::string answer = command->execute();
-    proxy.sendAnswerToClient(answer);
+    proxy.sendMsgToClient(answer);
     delete command;
 }
 

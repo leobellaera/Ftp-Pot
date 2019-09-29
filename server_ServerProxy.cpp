@@ -20,7 +20,7 @@ void ServerProxy::receiveClientCommand(std::string& input) {
     }
 }
 
-void ServerProxy::sendAnswerToClient(std::string& answer) {
+void ServerProxy::sendMsgToClient(std::string& answer) {
     answer.append(1, '\n');
     skt.sendMessage(answer.c_str(), answer.length());
 }

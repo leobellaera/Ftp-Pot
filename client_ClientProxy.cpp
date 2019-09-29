@@ -9,6 +9,17 @@
 #include <iostream>
 
 #define MSG_DELIM '\n'
+#define HELP "214"
+#define SYST "215"
+#define QUIT "221"
+#define LIST "226"
+#define PASS_S "230"
+#define RMD_S "250"
+#define PWD "257"
+#define USER "331"
+#define UNKNOWN "500"
+#define UNLOGGED "530"
+#define DIR_FAIL "550"
 
 ClientProxy::ClientProxy(const char* host, const char* service) :
     skt(host, service) {}
@@ -17,7 +28,7 @@ bool ClientProxy::executeCommand(std::string &command, std::string &answer) {
     command.append(1, MSG_DELIM);
     try {
         skt.sendMessage(command.c_str(), command.length());
-        this->getServerAnswer(answer);
+        this->recvSvAnswer(answer);
         command.pop_back();
     } catch (const SocketException &e) {
         std::cerr << e.what() << std::endl;
@@ -26,18 +37,21 @@ bool ClientProxy::executeCommand(std::string &command, std::string &answer) {
     return true;
 }
 
-void ClientProxy::getServerAnswer(std::string& answer) {
+void ClientProxy::recvSvAnswer(std::string& answer) {
     answer.clear();
-    bool last_line = false;
-    while (!last_line) {
-        answer.append(this->getAnswerLine(&last_line) + MSG_DELIM);
+    bool ans_totally_received = false;
+    std::string line;
+    while (!ans_totally_received) {
+        line.clear();
+        ans_totally_received = this->recvSvMessage(line);
+        answer.append(line + MSG_DELIM);
     }
 }
 
-std::string ClientProxy::getAnswerLine(bool* last_line) {
-    const std::vector<std::string> tokens = {"331", "530", "230", "215", "214",
-        "226", "257", "550", "250", "221", "500"};
-    std::string line;
+bool ClientProxy::recvSvMessage(std::string &line) {
+    const std::vector<std::string> tokens = {HELP, SYST, QUIT,
+        LIST, PASS_S, RMD_S, PWD, USER, UNKNOWN, UNLOGGED, DIR_FAIL};
+    bool ans_totally_received = false;
     char received_char = '\0';
     while (true) {
         skt.recvMessage(&received_char, 1);
@@ -48,9 +62,9 @@ std::string ClientProxy::getAnswerLine(bool* last_line) {
     }
     std::string code = line.substr(0, 3);
     if (std::find(tokens.begin(), tokens.end(), code) != tokens.end()) {
-        *last_line = true;
+        ans_totally_received = true;
     }
-    return std::move(line);
+    return ans_totally_received;
 }
 
 ClientProxy::~ClientProxy() {}
