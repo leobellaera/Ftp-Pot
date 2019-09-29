@@ -21,8 +21,8 @@ AcceptorSocket::AcceptorSocket(int backlog, const char* service) :
     }
 }
 
-Socket AcceptorSocket::acceptClient() {
-    int peer_fd = accept(fd, nullptr, nullptr);
+Socket AcceptorSocket::accept() {
+    int peer_fd = ::accept(fd, nullptr, nullptr);
     if (peer_fd == -1){
         throw SocketException(ACCEPT_ERROR_MSG);
     }

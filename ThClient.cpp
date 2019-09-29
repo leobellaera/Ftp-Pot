@@ -4,6 +4,7 @@
 
 #include "ThClient.h"
 #include "Command.h"
+#include "SocketException.h"
 #include <iostream>
 
 #define QUIT_COMMAND "QUIT"
@@ -20,7 +21,7 @@ void ThClient::run() {
     while (!finished) {
         try {
             this->executeCommand(input);
-        } catch (...) {
+        } catch (const SocketException& e) {
             finished = true;
             return;
         }
@@ -38,8 +39,12 @@ void ThClient::executeCommand(std::string& input) {
     delete command;
 }
 
-bool ThClient::isDead() {
-    finished = true;
+bool ThClient::isAlive() {
+    return !finished;
+}
+
+void ThClient::stop() {
+    proxy.stopCommunication();
 }
 
 ThClient::~ThClient() {}

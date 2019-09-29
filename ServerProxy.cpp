@@ -21,4 +21,8 @@ void ServerProxy::sendAnswerToClient(std::string& answer) {
     skt.sendMessage(answer.c_str(), answer.length());
 }
 
+void ServerProxy::stopCommunication() {
+    skt.close();
+}
+
 ServerProxy::~ServerProxy() {}

@@ -24,7 +24,8 @@ private:
 public:
     ThClient(Socket skt, std::map<std::string,std::string>& cfg, DirectoryOrganizer& dir_org);
     void run() override;
-    bool isDead();
+    void stop();
+    bool isAlive();
     ~ThClient() override; //override??
 };
 

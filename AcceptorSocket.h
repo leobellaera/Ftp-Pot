@@ -16,7 +16,7 @@ private:
     int bind(struct addrinfo* ptr);
 public:
     AcceptorSocket(int backlog, const char* service);
-    Socket acceptClient();
+    Socket accept();
     void close();
     ~AcceptorSocket();
 };
