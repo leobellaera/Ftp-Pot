@@ -12,6 +12,7 @@
 #include "server_Login.h"
 #include <string>
 #include <map>
+#include <atomic>
 
 class ThClient : public Thread {
 private:
@@ -19,7 +20,7 @@ private:
     Login login;
     DirectoryOrganizer& dir_organizer;
     ServerProxy proxy;
-    bool finished;
+    std::atomic<bool> finished;
     void executeCommand(std::string& input);
     void sendWelcomeMsgToClient();
 public:
