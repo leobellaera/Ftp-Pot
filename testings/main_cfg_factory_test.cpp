@@ -2,7 +2,7 @@
 // Created by leobellaera on 25/9/19.
 //
 
-#include "../server_CfgMapBuilder.h"
+#include "../CfgMapBuilder.h"
 
 int main() {
     CfgMapBuilder f("config.cfg");

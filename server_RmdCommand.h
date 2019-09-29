@@ -2,29 +2,29 @@
 // Created by leobellaera on 28/9/19.
 //
 
-#ifndef TP_SERVER_RMDCOMMAND_H
-#define TP_SERVER_RMDCOMMAND_H
+#ifndef TP_RMDCOMMAND_H
+#define TP_RMDCOMMAND_H
 
 
-#include "server_Command.h"
-#include "server_Login.h"
-#include "server_DirectoryOrganizer.h"
+#include "Command.h"
+#include "Login.h"
+#include "DirectoryOrganizer.h"
 #include <map>
 #include <string>
 
-class server_RmdCommand : public server_Command {
+class RmdCommand : public Command {
 private:
     std::string& dir_name;
     std::map<std::string, std::string>& cfg;
-    server_Login& login;
-    server_DirectoryOrganizer& dir_organizer;
+    Login& login;
+    DirectoryOrganizer& dir_organizer;
 public:
-    server_RmdCommand(std::string& dir_name,
-                      std::map<std::string, std::string> &cfg,
-                      server_Login& login, server_DirectoryOrganizer& d);
+    RmdCommand(std::string& dir_name,
+               std::map<std::string, std::string> &cfg,
+               Login& login, DirectoryOrganizer& d);
     std::string execute() override;
-    ~server_RmdCommand() override;
+    ~RmdCommand() override;
 };
 
 
-#endif //TP_SERVER_RMDCOMMAND_H
+#endif //TP_RMDCOMMAND_H

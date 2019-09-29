@@ -2,8 +2,8 @@
 // Created by leobellaera on 26/9/19.
 //
 
-#include "common_Socket.h"
-#include "common_SocketException.h"
+#include "Socket.h"
+#include "SocketException.h"
 #include <sys/socket.h>
 #include <iostream>
 #include <cstring>
@@ -14,22 +14,22 @@
 #define SEND_ERROR_MSG "Error occurred while trying to send message"
 #define RECV_ERROR_MSG "Error occurred while trying to receive message"
 
-common_Socket::common_Socket(const char* host, const char* service) :
+Socket::Socket(const char* host, const char* service) :
     fd(-1) {
     if (this->connect(host, service) == 1) {
-        throw common_SocketException(INIT_ERROR_MSG);
+        throw SocketException(INIT_ERROR_MSG);
     }
 }
 
-common_Socket::common_Socket(int fd) :
+Socket::Socket(int fd) :
     fd(fd) {}
 
-common_Socket::common_Socket(common_Socket &&other) noexcept {
+Socket::Socket(Socket &&other) noexcept {
     this->fd = other.fd;
     other.fd = -1;
 }
 
-int common_Socket::connect(const char* host, const char* service) {
+int Socket::connect(const char* host, const char* service) {
     struct addrinfo *result = nullptr;
     int s = this->getAddressInfo(&result, host, service);
     if (s != 0) {
@@ -46,7 +46,7 @@ int common_Socket::connect(const char* host, const char* service) {
     return 0;
 }
 
-bool common_Socket::establishConnection(addrinfo* result) {
+bool Socket::establishConnection(addrinfo* result) {
     struct addrinfo* ptr;
     int s;
     bool connection_established = false;
@@ -66,7 +66,7 @@ bool common_Socket::establishConnection(addrinfo* result) {
 }
 
 
-int common_Socket::getAddressInfo(struct addrinfo **addrinfo_ptr, const char* host, const char* service) {
+int Socket::getAddressInfo(struct addrinfo **addrinfo_ptr, const char* host, const char* service) {
     struct addrinfo hints;
     memset(&hints, 0, sizeof(struct addrinfo));
     hints.ai_family = AF_INET;
@@ -75,33 +75,33 @@ int common_Socket::getAddressInfo(struct addrinfo **addrinfo_ptr, const char* ho
     return getaddrinfo(host, service, &hints, addrinfo_ptr);
 }
 
-void common_Socket::sendMessage(const char* buffer, int size) { //quizas habria q lanzar error y cambiar la firma a void
+void Socket::sendMessage(const char* buffer, int size) { //quizas habria q lanzar error y cambiar la firma a void
     int sent = 0;
     int s = 0;
     while (sent < size) {
         s = send(fd, &buffer[sent], size - sent, MSG_NOSIGNAL);
         if (s == 0 || s == -1) {
-            throw common_SocketException(SEND_ERROR_MSG);
+            throw SocketException(SEND_ERROR_MSG);
         } else {
             sent += s;
         }
     }
 }
 
-void common_Socket::recvMessage(char* buffer, int size) {
+void Socket::recvMessage(char* buffer, int size) {
     int received = 0;
     int s = 0;
     while (received < size) {
         s = recv(fd, &buffer[received], size-received, 0);
         if (s == 0 || s == -1) {
-            throw common_SocketException(RECV_ERROR_MSG);
+            throw SocketException(RECV_ERROR_MSG);
         } else {
             received += s;
         }
     }
 }
 
-void common_Socket::close() {
+void Socket::close() {
     if (fd != -1) {
         shutdown(fd, SHUT_RDWR);
         ::close(fd);
@@ -109,6 +109,6 @@ void common_Socket::close() {
     }
 }
 
-common_Socket::~common_Socket() {
+Socket::~Socket() {
     this->close();
 }

@@ -2,7 +2,7 @@
 // Created by leobellaera on 28/9/19.
 //
 
-#include "server_MkdCommand.h"
+#include "MkdCommand.h"
 
 #define MKD_SUCCESS_KEY "mkdSuccess"
 #define MKD_FAIL_KEY "mkdFailed"
@@ -11,14 +11,14 @@
 #define MKD_SUCCESS_CODE "257 "
 #define MKD_FAIL_CODE "550 "
 
-server_MkdCommand::server_MkdCommand(std::string& dir_name, std::map<std::string, std::string> &cfg,
-                                     server_Login& login, server_DirectoryOrganizer& d) :
+MkdCommand::MkdCommand(std::string& dir_name, std::map<std::string, std::string> &cfg,
+                       Login& login, DirectoryOrganizer& d) :
         dir_name(dir_name),
         cfg(cfg),
         login(login),
         dir_organizer(d) {}
 
-std::string server_MkdCommand::execute() {
+std::string MkdCommand::execute() {
     login.resetIfNotLogged();
     if (!login.userIsLogged()) {
         return UNLOGGED_CODE + cfg.find(UNLOGGED_KEY)->second;
@@ -31,4 +31,4 @@ std::string server_MkdCommand::execute() {
     }
 }
 
-server_MkdCommand::~server_MkdCommand() {}
+MkdCommand::~MkdCommand() {}

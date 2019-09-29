@@ -2,15 +2,15 @@
 // Created by leobellaera on 27/9/19.
 //
 
-#include "server_DirectoryOrganizer.h"
+#include "DirectoryOrganizer.h"
 
-server_DirectoryOrganizer::server_DirectoryOrganizer() {}
+DirectoryOrganizer::DirectoryOrganizer() {}
 
-bool server_DirectoryOrganizer::makeDir(std::string name) {
+bool DirectoryOrganizer::makeDir(std::string name) {
     return directories.emplace(name).second;
 }
 
-bool server_DirectoryOrganizer::removeDir(std::string name) {
+bool DirectoryOrganizer::removeDir(std::string name) {
     if (directories.find(name) == directories.end()) {
         return false;
     }
@@ -18,7 +18,7 @@ bool server_DirectoryOrganizer::removeDir(std::string name) {
     return true;
 }
 
-std::string server_DirectoryOrganizer::getDirectories() {
+std::string DirectoryOrganizer::getDirectories() {
     std::string ret;
     for (const auto & dir : directories) {
         ret.append(dir);

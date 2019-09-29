@@ -2,18 +2,18 @@
 // Created by leobellaera on 25/9/19.
 //
 
-#include "server_CfgMapBuilder.h"
+#include "CfgMapBuilder.h"
 #include <iostream> //to printConfig
 #include <sstream>
 #define DELIM_CHAR '='
 
-server_CfgMapBuilder::server_CfgMapBuilder(const char* file_path) {
+CfgMapBuilder::CfgMapBuilder(const char* file_path) {
     file.open(file_path, std::ifstream::in);
     this->buildMap();
     file.close();
 }
 
-void server_CfgMapBuilder::buildMap() {
+void CfgMapBuilder::buildMap() {
     while (!file.eof()) {
         std::string aux;
         std::string key;
@@ -28,8 +28,8 @@ void server_CfgMapBuilder::buildMap() {
     }
 }
 
-std::map<std::string,std::string>& server_CfgMapBuilder::getMap(){
+std::map<std::string,std::string>& CfgMapBuilder::getMap(){
     return data;
 }
 
-server_CfgMapBuilder::~server_CfgMapBuilder() {}
+CfgMapBuilder::~CfgMapBuilder() {}

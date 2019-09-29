@@ -2,24 +2,24 @@
 // Created by leobellaera on 27/9/19.
 //
 
-#ifndef TP_SERVER_PASSCOMMAND_H
-#define TP_SERVER_PASSCOMMAND_H
+#ifndef TP_PASSCOMMAND_H
+#define TP_PASSCOMMAND_H
 
 #include <string>
 #include <map>
-#include "server_Login.h"
-#include "server_Command.h"
+#include "Login.h"
+#include "Command.h"
 
-class server_PassCommand : public server_Command {
+class PassCommand : public Command {
 private:
     std::map<std::string, std::string> cfg;
     std::string& pass;
-    server_Login& login;
+    Login& login;
 public:
-    server_PassCommand(std::string& pass, std::map<std::string,std::string>& cfg, server_Login& login);
+    PassCommand(std::string& pass, std::map<std::string,std::string>& cfg, Login& login);
     std::string execute() override;
-    ~server_PassCommand() override;
+    ~PassCommand() override;
 
 };
 
-#endif //TP_SERVER_PASSCOMMAND_H
+#endif //TP_PASSCOMMAND_H

@@ -2,19 +2,19 @@
 // Created by leobellaera on 27/9/19.
 //
 
-#include "server_PassCommand.h"
+#include "PassCommand.h"
 
 #define LOGIN_SUCCESS_KEY "loginSuccess"
 #define LOGIN_FAIL_KEY "loginFailed"
 #define LOGIN_FAIL_CODE "530 "
 #define LOGIN_SUCCESS_CODE "230 "
 
-server_PassCommand::server_PassCommand(std::string& pass, std::map<std::string,std::string>& cfg, server_Login& login) :
+PassCommand::PassCommand(std::string& pass, std::map<std::string,std::string>& cfg, Login& login) :
     cfg(cfg),
     pass(pass),
     login(login) {}
 
-std::string server_PassCommand::execute() {
+std::string PassCommand::execute() {
     login.enterPassword(pass);
     if (login.userIsLogged()) {
         return LOGIN_SUCCESS_CODE + cfg.find(LOGIN_SUCCESS_KEY)->second;
@@ -23,4 +23,4 @@ std::string server_PassCommand::execute() {
     }
 }
 
-server_PassCommand::~server_PassCommand() {}
+PassCommand::~PassCommand() {}

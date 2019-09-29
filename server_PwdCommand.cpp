@@ -2,19 +2,19 @@
 // Created by leobellaera on 27/9/19.
 //
 
-#include "server_PwdCommand.h"
+#include "PwdCommand.h"
 
 #define PWD_KEY "currentDirectoryMsg"
 #define UNLOGGED_KEY "clientNotLogged"
 #define UNLOGGED_CODE "530 "
 #define PWD_CODE "257 "
 
-server_PwdCommand::server_PwdCommand(std::map<std::string,std::string> &cfg, server_Login& login) :
+PwdCommand::PwdCommand(std::map<std::string,std::string> &cfg, Login& login) :
     cfg(cfg),
     login(login) {}
 
 
-std::string server_PwdCommand::execute() {
+std::string PwdCommand::execute() {
     login.resetIfNotLogged();
     if (login.userIsLogged()) {
         return PWD_CODE + cfg.find(PWD_KEY)->second;
@@ -23,4 +23,4 @@ std::string server_PwdCommand::execute() {
     }
 }
 
-server_PwdCommand::~server_PwdCommand() {}
+PwdCommand::~PwdCommand() {}

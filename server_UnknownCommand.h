@@ -2,22 +2,22 @@
 // Created by leobellaera on 27/9/19.
 //
 
-#ifndef TP_SERVER_UNKNOWNCOMMAND_H
-#define TP_SERVER_UNKNOWNCOMMAND_H
+#ifndef TP_UNKNOWNCOMMAND_H
+#define TP_UNKNOWNCOMMAND_H
 
 #include <string>
 #include <map>
-#include "server_Command.h"
+#include "Command.h"
 
-class server_UnknownCommand : public server_Command {
+class UnknownCommand : public Command {
 private:
     std::map<std::string, std::string> &cfg;
-    server_Login& login;
+    Login& login;
 public:
-    server_UnknownCommand(std::map<std::string, std::string> &cfg, server_Login& login);
+    UnknownCommand(std::map<std::string, std::string> &cfg, Login& login);
     std::string execute() override;
-    ~server_UnknownCommand() override;
+    ~UnknownCommand() override;
 };
 
 
-#endif //TP_SERVER_UNKNOWNCOMMAND_H
+#endif //TP_UNKNOWNCOMMAND_H

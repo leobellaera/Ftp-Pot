@@ -2,19 +2,18 @@
 // Created by leobellaera on 29/9/19.
 //
 
-#include "server_Ftp.h"
 #include <iostream>
+#include "ClientFtp.h"
 
 #define INVALID_ARGS_AMOUNT_MSG "Invalid number of arguments"
-#define CONFIG_PATH_POS 2
-#define PORT_POS 1
-#define BACKLOG 50
+#define HOST_POS 1
+#define SERVICE_POS 2
 
 int main(int argc, char* argv[]) {
     if (argc != 3) {
         std::cout<<INVALID_ARGS_AMOUNT_MSG<<std::endl;
     }
-    server_Ftp sv(argv[CONFIG_PATH_POS], argv[PORT_POS], BACKLOG);
-    sv.run();
+    client_Ftp client(argv[HOST_POS], argv[SERVICE_POS]);
+    client.run();
     return 0;
 }

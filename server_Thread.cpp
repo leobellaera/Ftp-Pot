@@ -2,25 +2,25 @@
 // Created by leobellaera on 19/9/19.
 //
 
-#include "server_Thread.h"
+#include "Thread.h"
 
-server_Thread::server_Thread() {}
+Thread::Thread() {}
 
-void server_Thread::start() {
-    thread = std::thread(&server_Thread::run, this);
+void Thread::start() {
+    thread = std::thread(&Thread::run, this);
 }
 
-void server_Thread::join() {
+void Thread::join() {
     thread.join();
 }
 
-server_Thread::server_Thread(server_Thread&& other) {
+Thread::Thread(Thread&& other) {
     this->thread = std::move(other.thread);
 }
 
-server_Thread& server_Thread::operator=(server_Thread&& other) {
+Thread& Thread::operator=(Thread&& other) {
     this->thread = std::move(other.thread);
     return *this;
 }
 
-server_Thread::~server_Thread() {}
+Thread::~Thread() {}

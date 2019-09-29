@@ -2,22 +2,22 @@
 // Created by leobellaera on 27/9/19.
 //
 
-#ifndef TP_SERVER_HELPCOMMAND_H
-#define TP_SERVER_HELPCOMMAND_H
+#ifndef TP_HELPCOMMAND_H
+#define TP_HELPCOMMAND_H
 
 
-#include "server_Command.h"
+#include "Command.h"
 #include <string>
 #include <map>
 
-class server_HelpCommand : public server_Command {
+class HelpCommand : public Command {
 private:
     std::map<std::string, std::string> &cfg;
-    server_Login& login;
+    Login& login;
 public:
-    server_HelpCommand(std::map<std::string,std::string> &cfg, server_Login& login);
+    HelpCommand(std::map<std::string,std::string> &cfg, Login& login);
     std::string execute() override;
-    ~server_HelpCommand() override;
+    ~HelpCommand() override;
 };
 
-#endif //TP_SERVER_HELPCOMMAND_H
+#endif //TP_HELPCOMMAND_H

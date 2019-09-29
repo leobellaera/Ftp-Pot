@@ -2,7 +2,7 @@
 // Created by leobellaera on 28/9/19.
 //
 
-#include "server_ListCommand.h"
+#include "ListCommand.h"
 
 #define UNLOGGED_KEY "clientNotLogged"
 #define LIST_BEGIN_KEY "listBegin"
@@ -14,13 +14,13 @@
 
 #define DIR_PREFIX "drwxrwxrwx 0 1000 1000 4096 Sep 24 12:34 "
 
-server_ListCommand::server_ListCommand(std::map<std::string, std::string> &cfg,
-                                       server_Login& login, server_DirectoryOrganizer& dir_org) :
+ListCommand::ListCommand(std::map<std::string, std::string> &cfg,
+                         Login& login, DirectoryOrganizer& dir_org) :
     cfg(cfg),
     login(login),
     dir_organizer(dir_org) {}
 
-std::string server_ListCommand::execute() {
+std::string ListCommand::execute() {
     login.resetIfNotLogged();
     std::string answer;
     if (login.userIsLogged()) {
@@ -33,4 +33,4 @@ std::string server_ListCommand::execute() {
     }
 }
 
-server_ListCommand::~server_ListCommand() {}
+ListCommand::~ListCommand() {}

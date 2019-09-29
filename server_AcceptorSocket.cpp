@@ -2,8 +2,8 @@
 // Created by leobellaera on 26/9/19.
 //
 
-#include "server_AcceptorSocket.h"
-#include "common_SocketException.h"
+#include "AcceptorSocket.h"
+#include "SocketException.h"
 #include <cerrno>
 #include <sys/socket.h>
 #include <netdb.h>
@@ -14,22 +14,22 @@
 #define INIT_ERROR_MSG "Error occurred while trying to bind and listen"
 #define ACCEPT_ERROR_MSG "Error occurred while trying to accept client"
 
-server_AcceptorSocket::server_AcceptorSocket(int backlog, const char* service) :
+AcceptorSocket::AcceptorSocket(int backlog, const char* service) :
     fd(-1) {
     if (this->bindAndListen(backlog, service) == 1) {
-        throw common_SocketException(INIT_ERROR_MSG);
+        throw SocketException(INIT_ERROR_MSG);
     }
 }
 
-common_Socket server_AcceptorSocket::accept() {
+Socket AcceptorSocket::accept() {
     int peer_fd = ::accept(fd, nullptr, nullptr);
     if (peer_fd == -1){
-        throw common_SocketException(ACCEPT_ERROR_MSG);
+        throw SocketException(ACCEPT_ERROR_MSG);
     }
-    return std::move(common_Socket(peer_fd));
+    return std::move(Socket(peer_fd));
 }
 
-int server_AcceptorSocket::bindAndListen(int backlog, const char* service) {
+int AcceptorSocket::bindAndListen(int backlog, const char* service) {
     struct addrinfo *ptr = nullptr;
     int s = this->getAddressInfo(&ptr, service);
     if (s != 0) {
@@ -53,7 +53,7 @@ int server_AcceptorSocket::bindAndListen(int backlog, const char* service) {
     return 0;
 }
 
-int server_AcceptorSocket::bind(struct addrinfo* ptr) {
+int AcceptorSocket::bind(struct addrinfo* ptr) {
     int s = ::bind(fd, ptr->ai_addr, ptr->ai_addrlen);
     if (s == -1) {
         std::cerr << "Error: " << strerror(errno) << std::endl;
@@ -62,7 +62,7 @@ int server_AcceptorSocket::bind(struct addrinfo* ptr) {
     return 0;
 }
 
-int server_AcceptorSocket::listen(int backlog) {
+int AcceptorSocket::listen(int backlog) {
     int s = ::listen(fd, backlog);
     if (s == -1) {
         std::cerr << "Error: " << strerror(errno) << std::endl;
@@ -71,7 +71,7 @@ int server_AcceptorSocket::listen(int backlog) {
     return 0;
 }
 
-int server_AcceptorSocket::getAddressInfo(struct addrinfo **addrinfo_ptr, const char* service) {
+int AcceptorSocket::getAddressInfo(struct addrinfo **addrinfo_ptr, const char* service) {
     struct addrinfo hints;
     memset(&hints, 0, sizeof(struct addrinfo));
     hints.ai_family = AF_INET;
@@ -80,13 +80,13 @@ int server_AcceptorSocket::getAddressInfo(struct addrinfo **addrinfo_ptr, const 
     return getaddrinfo(nullptr, service, &hints, addrinfo_ptr);
 }
 
-void server_AcceptorSocket::close() {
+void AcceptorSocket::close() {
     if (fd != -1) {
         shutdown(fd, SHUT_RDWR);
         ::close(fd);
     }
 }
 
-server_AcceptorSocket::~server_AcceptorSocket() {
+AcceptorSocket::~AcceptorSocket() {
     this->close();
 }

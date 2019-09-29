@@ -2,19 +2,19 @@
 // Created by leobellaera on 27/9/19.
 //
 
-#include "server_UserCommand.h"
+#include "UserCommand.h"
 
 #define USER_KEY "passRequired"
 #define CODE "331 "
 
-server_UserCommand::server_UserCommand(std::string &user, std::map<std::string,std::string> &cfg, server_Login& login) :
+UserCommand::UserCommand(std::string &user, std::map<std::string,std::string> &cfg, Login& login) :
     user(user),
     cfg(cfg),
     login(login) {}
 
-std::string server_UserCommand::execute() {
+std::string UserCommand::execute() {
     login.enterUser(user);
     return  CODE + cfg.find(USER_KEY)->second;
 }
 
-server_UserCommand::~server_UserCommand() {}
+UserCommand::~UserCommand() {}

@@ -2,22 +2,22 @@
 // Created by leobellaera on 28/9/19.
 //
 
-#ifndef TP_SERVER_PROXY_H
-#define TP_SERVER_PROXY_H
+#ifndef TP_SERVERPROXY_H
+#define TP_SERVERPROXY_H
 
-#include "common_Socket.h"
+#include "Socket.h"
 #include <string>
 
-class server_Proxy {
+class ServerProxy {
 private:
-    common_Socket skt;
+    Socket skt;
 public:
-    explicit server_Proxy(common_Socket skt);
+    explicit ServerProxy(Socket skt);
     void receiveClientCommand(std::string& input);
     void sendAnswerToClient(std::string& answer);
     void stopCommunication();
-    ~server_Proxy();
+    ~ServerProxy();
 
 };
 
-#endif //TP_SERVER_PROXY_H
+#endif //TP_SERVERPROXY_H

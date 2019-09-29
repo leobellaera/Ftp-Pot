@@ -2,31 +2,31 @@
 // Created by leobellaera on 28/9/19.
 //
 
-#include "server_ThAcceptor.h"
-#include "common_SocketException.h"
-#include "server_ThClient.h"
+#include "ThAcceptor.h"
+#include "SocketException.h"
+#include "ThClient.h"
 
-server_ThAcceptor::server_ThAcceptor(server_DirectoryOrganizer& dir_organizer, std::map<std::string, std::string>& cfg, const char* service, int backlog) :
+ThAcceptor::ThAcceptor(DirectoryOrganizer& dir_organizer, std::map<std::string, std::string>& cfg, const char* service, int backlog) :
     acceptor_skt(backlog, service),
     dir_organizer(dir_organizer),
     cfg(cfg) {}
 
 
-void server_ThAcceptor::run() {
+void ThAcceptor::run() {
     while (true) {
         try {
-            common_Socket skt = acceptor_skt.accept();
-            server_ThClient* thclient = new server_ThClient(std::move(skt), cfg, dir_organizer);
+            Socket skt = acceptor_skt.accept();
+            ThClient* thclient = new ThClient(std::move(skt), cfg, dir_organizer);
             thclient->start();
             clients.push_back(thclient);
-        } catch (const common_SocketException &e) {
+        } catch (const SocketException &e) {
             return;
         }
         this->deleteDeadClients();
     }
 }
 
-void server_ThAcceptor::deleteDeadClients() {
+void ThAcceptor::deleteDeadClients() {
     auto it = clients.begin();
     while (it != clients.end()) {
         if ((*it)->isAlive()) {
@@ -39,7 +39,7 @@ void server_ThAcceptor::deleteDeadClients() {
     }
 }
 
-void server_ThAcceptor::stop() {
+void ThAcceptor::stop() {
     int size = clients.size();
     for (int i = 0; i < size; i++) {
         clients[i]->stop();
@@ -49,4 +49,4 @@ void server_ThAcceptor::stop() {
     acceptor_skt.close();
 }
 
-server_ThAcceptor::~server_ThAcceptor() {}
+ThAcceptor::~ThAcceptor() {}

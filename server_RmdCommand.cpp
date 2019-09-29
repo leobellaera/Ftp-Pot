@@ -2,7 +2,7 @@
 // Created by leobellaera on 28/9/19.
 //
 
-#include "server_RmdCommand.h"
+#include "RmdCommand.h"
 
 #define RMD_SUCCESS_KEY "rmdSuccess"
 #define RMD_FAIL_KEY "rmdFailed"
@@ -11,14 +11,14 @@
 #define RMD_FAIL_CODE "550 "
 #define RMD_SUCCESS_CODE "250 "
 
-server_RmdCommand::server_RmdCommand(std::string& dir_name, std::map<std::string, std::string> &cfg,
-                                     server_Login& login, server_DirectoryOrganizer& d) :
+RmdCommand::RmdCommand(std::string& dir_name, std::map<std::string, std::string> &cfg,
+                       Login& login, DirectoryOrganizer& d) :
     dir_name(dir_name),
     cfg(cfg),
     login(login),
     dir_organizer(d) {}
 
-std::string server_RmdCommand::execute() {
+std::string RmdCommand::execute() {
     login.resetIfNotLogged();
     if (!login.userIsLogged()) {
         return cfg.find(UNLOGGED_KEY)->second;
@@ -31,4 +31,4 @@ std::string server_RmdCommand::execute() {
     }
 }
 
-server_RmdCommand::~server_RmdCommand() {}
+RmdCommand::~RmdCommand() {}

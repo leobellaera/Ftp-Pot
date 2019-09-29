@@ -2,12 +2,12 @@
 // Created by leobellaera on 26/9/19.
 //
 
-#ifndef TP_SERVER_ACCEPTORSOCKET_H
-#define TP_SERVER_ACCEPTORSOCKET_H
+#ifndef TP_ACCEPTORSOCKET_H
+#define TP_ACCEPTORSOCKET_H
 
-#include "common_Socket.h"
+#include "Socket.h"
 
-class server_AcceptorSocket {
+class AcceptorSocket {
 private:
     int fd;
     int getAddressInfo(struct addrinfo **addrinfo_ptr, const char* service);
@@ -15,11 +15,11 @@ private:
     int listen(int backlog);
     int bind(struct addrinfo* ptr);
 public:
-    server_AcceptorSocket(int backlog, const char* service);
-    common_Socket accept();
+    AcceptorSocket(int backlog, const char* service);
+    Socket accept();
     void close();
-    ~server_AcceptorSocket();
+    ~AcceptorSocket();
 };
 
 
-#endif //TP_SERVER_ACCEPTORSOCKET_H
+#endif //TP_ACCEPTORSOCKET_H

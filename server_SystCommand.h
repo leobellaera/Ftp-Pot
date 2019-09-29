@@ -2,22 +2,22 @@
 // Created by leobellaera on 27/9/19.
 //
 
-#ifndef TP_SERVER_SYSTCOMMAND_H
-#define TP_SERVER_SYSTCOMMAND_H
+#ifndef TP_SYSTCOMMAND_H
+#define TP_SYSTCOMMAND_H
 
-#include "server_Command.h"
+#include "Command.h"
 #include <map>
 #include <string>
 
-class server_SystCommand : public server_Command {
+class SystCommand : public Command {
 private:
     std::map<std::string, std::string> &cfg;
-    server_Login& login;
+    Login& login;
 public:
-    server_SystCommand(std::map<std::string, std::string> &cfg, server_Login& login);
+    SystCommand(std::map<std::string, std::string> &cfg, Login& login);
     std::string execute() override;
-    ~server_SystCommand() override;
+    ~SystCommand() override;
 };
 
 
-#endif //TP_SERVER_SYSTCOMMAND_H
+#endif //TP_SYSTCOMMAND_H
