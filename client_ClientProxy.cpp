@@ -5,7 +5,6 @@
 #include "client_ClientProxy.h"
 #include "common_SocketException.h"
 #include <vector>
-#include <iostream>
 #include <algorithm>
 
 #define MSG_DELIM '\n'
@@ -25,20 +24,30 @@ bool ClientProxy::executeCommand(std::string &command, std::string &answer) {
 }
 
 void ClientProxy::getServerAnswer(std::string& answer) {
-    const std::vector<std::string> tokens = {"331", "530", "230", "215", "214",
-                                      "226", "257", "550", "250", "221"};
-    char received_char = '\0';
     answer.clear();
-    int i = 0;
     bool last_line = false;
-    while (received_char != MSG_DELIM || !last_line) {
-        skt.recvMessage(&received_char, 1);
-        answer.append(1, received_char);
-        if (i == 2 && std::find(tokens.begin(), tokens.end(), answer) != tokens.end()) {
-            last_line = true;
-        }
-        i++;
+    while (!last_line) {
+        answer.append(this->getAnswerLine(&last_line) + MSG_DELIM);
     }
+}
+
+std::string ClientProxy::getAnswerLine(bool* last_line) {
+    const std::vector<std::string> tokens = {"331", "530", "230", "215", "214",
+        "226", "257", "550", "250", "221", "500"};
+    std::string line;
+    char received_char = '\0';
+    while (true) {
+        skt.recvMessage(&received_char, 1);
+        if (received_char == MSG_DELIM) {
+            break;
+        }
+        line.append(1, received_char);
+    }
+    std::string code = line.substr(0, 3);
+    if (std::find(tokens.begin(), tokens.end(), code) != tokens.end()) {
+        *last_line = true;
+    }
+    return std::move(line);
 }
 
 ClientProxy::~ClientProxy() {}

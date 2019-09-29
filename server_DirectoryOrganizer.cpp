@@ -3,6 +3,7 @@
 //
 
 #include "server_DirectoryOrganizer.h"
+#define DIR_PREFIX "drwxrwxrwx 0 1000 1000 4096 Sep 24 12:34 "
 
 DirectoryOrganizer::DirectoryOrganizer() {}
 
@@ -24,7 +25,7 @@ std::string DirectoryOrganizer::getDirectories() {
     std::unique_lock<std::mutex> lock(m);
     std::string ret;
     for (const auto & dir : directories) {
-        ret.append(dir);
+        ret.append(DIR_PREFIX + dir);
         ret.append("\n");
     }
     return std::move(ret);

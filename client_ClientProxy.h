@@ -12,6 +12,7 @@ class ClientProxy {
 private:
     Socket skt;
     void getServerAnswer(std::string& answer);
+    std::string getAnswerLine(bool* last_line);
 public:
     ClientProxy(const char* host, const char* service);
     bool executeCommand(std::string &command, std::string &answer);
