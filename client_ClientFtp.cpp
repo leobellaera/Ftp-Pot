@@ -9,7 +9,7 @@
 #define QUIT_COMMAND "QUIT"
 #define COMMUNICATION_ERROR_MSG "An unexpected network error occurred"
 
-ClientFtp::ClientFtp(const char* host, const char* service) : //puede lanzar excepcion!!
+ClientFtp::ClientFtp(const char* host, const char* service) :
     proxy(host, service) {}
 
 void ClientFtp::run() {
@@ -22,7 +22,7 @@ void ClientFtp::run() {
             std::cout<<COMMUNICATION_ERROR_MSG<<std::endl;
             return;
         }
-        std::cout << answer << std::endl;
+        std::cout << answer;
         if (command == QUIT_COMMAND) {
             return;
         }

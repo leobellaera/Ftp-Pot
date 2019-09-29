@@ -7,10 +7,12 @@
 
 #include <set>
 #include <string>
+#include <mutex>
 
 class DirectoryOrganizer {
 private:
     std::set<std::string> directories;
+    std::mutex m;
 public:
     DirectoryOrganizer();
     bool makeDir(std::string name);

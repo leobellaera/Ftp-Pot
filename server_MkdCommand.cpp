@@ -11,9 +11,9 @@
 #define MKD_SUCCESS_CODE "257 "
 #define MKD_FAIL_CODE "550 "
 
-MkdCommand::MkdCommand(std::string& dir_name, std::map<std::string, std::string> &cfg,
+MkdCommand::MkdCommand(std::string dir_name, std::map<std::string, std::string> &cfg,
                        Login& login, DirectoryOrganizer& d) :
-        dir_name(dir_name),
+        dir_name(std::move(dir_name)),
         cfg(cfg),
         login(login),
         dir_organizer(d) {}

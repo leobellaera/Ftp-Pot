@@ -11,9 +11,9 @@
 #define RMD_FAIL_CODE "550 "
 #define RMD_SUCCESS_CODE "250 "
 
-RmdCommand::RmdCommand(std::string& dir_name, std::map<std::string, std::string> &cfg,
+RmdCommand::RmdCommand(std::string dir_name, std::map<std::string, std::string> &cfg,
                        Login& login, DirectoryOrganizer& d) :
-    dir_name(dir_name),
+    dir_name(std::move(dir_name)),
     cfg(cfg),
     login(login),
     dir_organizer(d) {}

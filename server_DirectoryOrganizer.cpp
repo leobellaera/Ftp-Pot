@@ -7,10 +7,12 @@
 DirectoryOrganizer::DirectoryOrganizer() {}
 
 bool DirectoryOrganizer::makeDir(std::string name) {
+    std::unique_lock<std::mutex> lock(m);
     return directories.emplace(name).second;
 }
 
 bool DirectoryOrganizer::removeDir(std::string name) {
+    std::unique_lock<std::mutex> lock(m);
     if (directories.find(name) == directories.end()) {
         return false;
     }
@@ -19,6 +21,7 @@ bool DirectoryOrganizer::removeDir(std::string name) {
 }
 
 std::string DirectoryOrganizer::getDirectories() {
+    std::unique_lock<std::mutex> lock(m);
     std::string ret;
     for (const auto & dir : directories) {
         ret.append(dir);

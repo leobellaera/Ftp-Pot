@@ -5,7 +5,6 @@
 #include "server_ThClient.h"
 #include "server_Command.h"
 #include "common_SocketException.h"
-#include <iostream>
 
 #define QUIT_COMMAND "QUIT"
 
@@ -19,7 +18,9 @@ ThClient::ThClient(Socket skt, std::map<std::string,std::string> &cfg, Directory
 void ThClient::run() {
     std::string input;
     while (!finished) {
+        input.clear();
         try {
+            proxy.receiveClientCommand(input);
             this->executeCommand(input);
         } catch (const SocketException& e) {
             finished = true;
@@ -32,7 +33,6 @@ void ThClient::run() {
 }
 
 void ThClient::executeCommand(std::string& input) {
-    proxy.receiveClientCommand(input);
     Command* command = Command::make_command(cfg, input, login, dir_organizer);
     std::string answer = command->execute();
     proxy.sendAnswerToClient(answer);

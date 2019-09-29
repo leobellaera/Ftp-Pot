@@ -13,12 +13,12 @@
 
 class RmdCommand : public Command {
 private:
-    std::string& dir_name;
+    std::string dir_name;
     std::map<std::string, std::string>& cfg;
     Login& login;
     DirectoryOrganizer& dir_organizer;
 public:
-    RmdCommand(std::string& dir_name,
+    RmdCommand(std::string dir_name,
                std::map<std::string, std::string> &cfg,
                Login& login, DirectoryOrganizer& d);
     std::string execute() override;

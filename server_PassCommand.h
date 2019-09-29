@@ -13,10 +13,10 @@
 class PassCommand : public Command {
 private:
     std::map<std::string, std::string> cfg;
-    std::string& pass;
+    std::string pass;
     Login& login;
 public:
-    PassCommand(std::string& pass, std::map<std::string,std::string>& cfg, Login& login);
+    PassCommand(std::string pass, std::map<std::string,std::string>& cfg, Login& login);
     std::string execute() override;
     ~PassCommand() override;
 
