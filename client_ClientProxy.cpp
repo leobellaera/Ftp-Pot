@@ -6,6 +6,7 @@
 #include "common_SocketException.h"
 #include <vector>
 #include <algorithm>
+#include <iostream>
 
 #define MSG_DELIM '\n'
 
