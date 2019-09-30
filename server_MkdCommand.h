@@ -23,7 +23,6 @@ public:
                Login& login, DirectoryOrganizer& d);
     std::string execute() override;
     ~MkdCommand() override;
-
 };
 
 

@@ -9,7 +9,8 @@
 #define LOGIN_FAIL_CODE "530 "
 #define LOGIN_SUCCESS_CODE "230 "
 
-PassCommand::PassCommand(std::string pass, std::map<std::string,std::string>& cfg, Login& login) :
+PassCommand::PassCommand(std::string pass,
+        std::map<std::string,std::string>& cfg, Login& login) :
     cfg(cfg),
     pass(std::move(pass)),
     login(login) {}

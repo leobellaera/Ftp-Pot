@@ -17,7 +17,9 @@ private:
     Login& login;
     DirectoryOrganizer& dir_organizer;
 public:
-    ListCommand(std::map<std::string, std::string> &cfg, Login& login, DirectoryOrganizer& d);
+    ListCommand(std::map<std::string, std::string> &cfg,
+                Login& login,
+                DirectoryOrganizer& d);
     std::string execute() override;
     ~ListCommand() override;
 };

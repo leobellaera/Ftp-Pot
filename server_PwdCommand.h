@@ -17,7 +17,6 @@ public:
     PwdCommand(std::map<std::string,std::string> &cfg, Login& login);
     std::string execute() override;
     ~PwdCommand() override;
-
 };
 
 #endif //TP_PWDCOMMAND_H

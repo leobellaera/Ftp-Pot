@@ -72,7 +72,8 @@ int AcceptorSocket::listen(int backlog) {
     return 0;
 }
 
-int AcceptorSocket::getAddressInfo(struct addrinfo **addrinfo_ptr, const char* service) {
+int AcceptorSocket::getAddressInfo(struct addrinfo **addrinfo_ptr,
+        const char* service) {
     struct addrinfo hints;
     memset(&hints, 0, sizeof(struct addrinfo));
     hints.ai_family = AF_INET;

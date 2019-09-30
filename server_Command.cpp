@@ -25,10 +25,11 @@
 #define MKD_COMMAND "MKD"
 #define RMD_COMMAND "RMD"
 
-Command* Command::make_command(std::map<std::string,std::string>& cfg, std::string& command,
-                               Login& login, DirectoryOrganizer& dir_org) {
+Command* Command::make_command(std::map<std::string, std::string>& cfg,
+        std::string& command, Login& login, DirectoryOrganizer& dir_org) {
     std::string first_arg = command.substr(0, command.find(' '));
-    std::string second_arg = command.substr(command.find(' ') + 1, command.length());
+    std::string second_arg = command.substr(command.find(' ') + 1,
+            command.length());
     if (first_arg == USER_COMMAND) {
         return new UserCommand(second_arg, cfg, login);
 
@@ -38,7 +39,7 @@ Command* Command::make_command(std::map<std::string,std::string>& cfg, std::stri
     } else if (first_arg == SYST_COMMAND) {
         return new SystCommand(cfg, login);
 
-    } else if (first_arg == QUIT_COMMAND ) {
+    } else if (first_arg == QUIT_COMMAND) {
         return new QuitCommand(cfg);
 
     } else if (first_arg == HELP_COMMAND) {

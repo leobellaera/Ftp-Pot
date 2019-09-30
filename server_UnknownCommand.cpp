@@ -8,7 +8,8 @@
 #define UNLOGGED_KEY "clientNotLogged"
 #define CODE  "530 "
 
-UnknownCommand::UnknownCommand(std::map<std::string, std::string> &cfg, Login& login) :
+UnknownCommand::UnknownCommand(std::map<std::string,
+        std::string> &cfg, Login& login) :
     cfg(cfg),
     login(login) {}
 

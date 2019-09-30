@@ -10,7 +10,9 @@
 #define NEW_CLIENT_CODE "220 "
 #define NEW_CLIENT_KEY "newClient"
 
-ThClient::ThClient(Socket skt, std::map<std::string,std::string> &cfg, DirectoryOrganizer& dir_org) :
+ThClient::ThClient(Socket skt,
+        std::map<std::string,std::string> &cfg,
+        DirectoryOrganizer& dir_org) :
     cfg(cfg),
     login(cfg),
     dir_organizer(dir_org),

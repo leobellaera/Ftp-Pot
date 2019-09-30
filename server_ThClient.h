@@ -24,7 +24,8 @@ private:
     void executeCommand(std::string& input);
     void sendWelcomeMsgToClient();
 public:
-    ThClient(Socket skt, std::map<std::string,std::string>& cfg, DirectoryOrganizer& dir_org);
+    ThClient(Socket skt, std::map<std::string,std::string>& cfg,
+            DirectoryOrganizer& dir_org);
     void run() override;
     void stop();
     bool isAlive();

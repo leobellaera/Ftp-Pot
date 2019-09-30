@@ -16,7 +16,9 @@ private:
     std::map<std::string,std::string> &cfg;
     Login& login;
 public:
-    UserCommand(std::string user, std::map<std::string,std::string> &cfg, Login& login);
+    UserCommand(std::string user,
+            std::map<std::string,std::string> &cfg,
+            Login& login);
     std::string execute() override;
     ~UserCommand() override;
 };

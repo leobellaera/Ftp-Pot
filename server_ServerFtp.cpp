@@ -7,7 +7,8 @@
 
 #define STOP_SV_KEY 'q'
 
-ServerFtp::ServerFtp(const char* config_path, const char* service, int backlog) :
+ServerFtp::ServerFtp(const char* config_path,
+        const char* service, int backlog) :
     map_builder(config_path),
     acceptor_thread(dir_organizer, map_builder.getMap(), service, backlog) {}
 

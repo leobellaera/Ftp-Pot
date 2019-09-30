@@ -9,7 +9,8 @@
 #define SYST_CODE "215 "
 #define UNLOGGED_CODE "530 "
 
-SystCommand::SystCommand(std::map<std::string, std::string> &cfg, Login& login) :
+SystCommand::SystCommand(std::map<std::string,
+        std::string> &cfg, Login& login) :
     cfg(cfg),
     login(login) {}
 
@@ -20,7 +21,6 @@ std::string SystCommand::execute() {
     } else {
         return UNLOGGED_CODE + cfg.find(UNLOGGED_KEY)->second;
     }
-
 }
 
 SystCommand::~SystCommand() {}

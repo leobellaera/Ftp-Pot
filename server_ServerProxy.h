@@ -17,7 +17,6 @@ public:
     void sendMsgToClient(std::string& answer);
     void stopCommunication();
     ~ServerProxy();
-
 };
 
 #endif //TP_SERVERPROXY_H

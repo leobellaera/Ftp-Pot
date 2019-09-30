@@ -11,7 +11,8 @@ private:
     int fd;
     int connect(const char* host, const char* service);
     bool establishConnection(addrinfo* result);
-    int getAddressInfo(struct addrinfo **addrinfo_ptr, const char* host, const char* service);
+    int getAddressInfo(struct addrinfo **addrinfo_ptr,
+            const char* host, const char* service);
 public:
     Socket(const char* host, const char* service);
     explicit Socket(int fd);

@@ -15,7 +15,7 @@ private:
     std::map<std::string,std::string> data;
     void buildMap();
 public:
-    CfgMapBuilder(const char* file_path);
+    explicit CfgMapBuilder(const char* file_path);
     std::map<std::string,std::string>& getMap();
     ~CfgMapBuilder();
 };

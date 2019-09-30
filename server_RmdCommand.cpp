@@ -12,8 +12,9 @@
 #define RMD_SUCCESS_CODE "250 "
 #define DIR_DELIM '"'
 
-RmdCommand::RmdCommand(std::string dir_name, std::map<std::string, std::string> &cfg,
-                       Login& login, DirectoryOrganizer& d) :
+RmdCommand::RmdCommand(std::string dir_name,
+        std::map<std::string, std::string> &cfg,
+        Login& login, DirectoryOrganizer& d) :
     dir_name(std::move(dir_name)),
     cfg(cfg),
     login(login),

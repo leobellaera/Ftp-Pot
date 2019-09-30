@@ -50,7 +50,8 @@ bool Socket::establishConnection(addrinfo* result) {
     struct addrinfo* ptr;
     int s;
     bool connection_established = false;
-    for (ptr = result; ptr != nullptr && !connection_established ; ptr = ptr->ai_next) {
+    for (ptr = result; ptr != nullptr && !connection_established ;
+            ptr = ptr->ai_next) {
         fd = socket(ptr->ai_family, ptr->ai_socktype, ptr->ai_protocol);
         if (fd == -1) {
             std::cerr << "Error: " << strerror(errno) << std::endl;
@@ -66,7 +67,8 @@ bool Socket::establishConnection(addrinfo* result) {
 }
 
 
-int Socket::getAddressInfo(struct addrinfo **addrinfo_ptr, const char* host, const char* service) {
+int Socket::getAddressInfo(struct addrinfo **addrinfo_ptr,
+        const char* host, const char* service) {
     struct addrinfo hints;
     memset(&hints, 0, sizeof(struct addrinfo));
     hints.ai_family = AF_INET;

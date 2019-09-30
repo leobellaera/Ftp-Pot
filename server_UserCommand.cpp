@@ -7,7 +7,8 @@
 #define USER_KEY "passRequired"
 #define CODE "331 "
 
-UserCommand::UserCommand(std::string user, std::map<std::string,std::string> &cfg, Login& login) :
+UserCommand::UserCommand(std::string user,
+        std::map<std::string,std::string> &cfg, Login& login) :
     user(std::move(user)),
     cfg(cfg),
     login(login) {}

@@ -12,8 +12,8 @@
 #define MKD_FAIL_CODE "550 "
 #define DIR_DELIM '"'
 
-MkdCommand::MkdCommand(std::string dir_name, std::map<std::string, std::string> &cfg,
-                       Login& login, DirectoryOrganizer& d) :
+MkdCommand::MkdCommand(std::string dir_name, std::map<std::string,
+        std::string> &cfg, Login& login, DirectoryOrganizer& d) :
         dir_name(std::move(dir_name)),
         cfg(cfg),
         login(login),

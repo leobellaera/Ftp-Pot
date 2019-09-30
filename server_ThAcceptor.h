@@ -21,7 +21,9 @@ private:
     std::vector<ThClient*> clients;
     void deleteDeadClients();
 public:
-    ThAcceptor(DirectoryOrganizer& dir_organizer, std::map<std::string, std::string>& cfg, const char* service, int backlog);
+    ThAcceptor(DirectoryOrganizer& dir_organizer,
+            std::map<std::string, std::string>& cfg,
+            const char* service, int backlog);
     void run() override;
     void stop();
     ~ThAcceptor() override;

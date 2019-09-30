@@ -7,7 +7,9 @@
 #include "server_ThClient.h"
 #include <iostream>
 
-ThAcceptor::ThAcceptor(DirectoryOrganizer& dir_organizer, std::map<std::string, std::string>& cfg, const char* service, int backlog) :
+ThAcceptor::ThAcceptor(DirectoryOrganizer& dir_organizer,
+        std::map<std::string, std::string>& cfg,
+        const char* service, int backlog) :
     acceptor_skt(backlog, service),
     dir_organizer(dir_organizer),
     cfg(cfg) {}
@@ -17,7 +19,8 @@ void ThAcceptor::run() {
     while (true) {
         try {
             Socket skt = acceptor_skt.accept();
-            ThClient* thclient = new ThClient(std::move(skt), cfg, dir_organizer);
+            ThClient* thclient = new ThClient(std::move(skt),
+                    cfg, dir_organizer);
             thclient->start();
             clients.push_back(thclient);
         } catch (const SocketException &e) {

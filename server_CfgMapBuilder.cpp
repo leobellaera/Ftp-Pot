@@ -6,8 +6,11 @@
 #include "server_CfgMapBuilderException.h"
 #include <sstream>
 #define DELIM_CHAR '='
-#define OPENING_ERROR_MSG "An error occurred while trying to open the config file.\n"
-#define READING_ERROR_MSG "An error occurred while trying to read the config file.\n"
+#define OPENING_ERROR_MSG "An error occurred while\
+ trying to open the config file.\n"
+
+#define READING_ERROR_MSG "An error occurred while\
+ trying to read the config file.\n"
 
 CfgMapBuilder::CfgMapBuilder(const char* file_path) {
     file.exceptions(std::ifstream::badbit);

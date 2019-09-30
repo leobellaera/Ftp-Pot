@@ -24,7 +24,8 @@ std::string ListCommand::execute() {
     login.resetIfNotLogged();
     std::string answer;
     if (login.userIsLogged()) {
-        answer.append(LIST_BEGIN_CODE + cfg.find(LIST_BEGIN_KEY)->second + DELIM_CHAR);
+        answer.append(LIST_BEGIN_CODE +
+        cfg.find(LIST_BEGIN_KEY)->second + DELIM_CHAR);
         answer.append(dir_organizer.getDirectories());
         answer.append(LIST_END_CODE + cfg.find(LIST_END_KEY)->second);
         return std::move(answer);
