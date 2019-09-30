@@ -14,13 +14,13 @@ ClientFtp::ClientFtp(const char* host, const char* service) :
 void ClientFtp::run() {
     std::string command;
     std::string sv_msg;
-    proxy.recvSvMessage(sv_msg);
-    std::cout<<sv_msg<<std::endl; //welcome msg
+    proxy.recvSvMessage(sv_msg); //server welcome msg
+    std::cout<<sv_msg<<std::endl;
 
     while (true) {
         std::getline(std::cin, command);
         if (std::cin.eof()) break;
-        if (!proxy.executeCommand(command, sv_msg)) {
+        if (!proxy.executeCommand(command, sv_msg)) { //error occurred
             return;
         }
         std::cout << sv_msg;

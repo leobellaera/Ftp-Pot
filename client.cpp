@@ -8,6 +8,7 @@
 
 #define INVALID_ARGS_AMOUNT_MSG "Invalid number of arguments"
 #define CONNECTION_ERROR_MSG "An unexpected network error occurred"
+#define UNKNOWN_ERROR_MSG "An unknown error occurred in the execution"
 #define HOST_POS 1
 #define SERVICE_POS 2
 
@@ -20,8 +21,10 @@ int main(int argc, char* argv[]) {
         ClientFtp client(argv[HOST_POS], argv[SERVICE_POS]);
         client.run();
     } catch (const SocketException& e) {
-        std::cout<< CONNECTION_ERROR_MSG << std::endl;
+        std::cout << CONNECTION_ERROR_MSG << std::endl;
         return 1;
+    } catch (...) {
+        std::cout << UNKNOWN_ERROR_MSG << std::endl;
     }
     return 0;
 }
