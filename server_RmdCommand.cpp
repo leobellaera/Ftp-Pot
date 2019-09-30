@@ -22,7 +22,7 @@ RmdCommand::RmdCommand(std::string dir_name, std::map<std::string, std::string> 
 std::string RmdCommand::execute() {
     login.resetIfNotLogged();
     if (!login.userIsLogged()) {
-        return cfg.find(UNLOGGED_KEY)->second;
+        return UNLOGGED_CODE + cfg.find(UNLOGGED_KEY)->second;
     } else {
         if (!dir_organizer.removeDir(dir_name)) {
             return RMD_FAIL_CODE + cfg.find(RMD_FAIL_KEY)->second;
