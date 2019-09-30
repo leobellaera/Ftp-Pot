@@ -4,7 +4,7 @@
 
 #include "server_HelpCommand.h"
 
-#define HELP_KEY "help"
+#define HELP_KEY "commands"
 #define UNLOGGED_KEY "clientNotLogged"
 #define UNLOGGED_CODE "530 "
 #define HELP_CODE "214 "

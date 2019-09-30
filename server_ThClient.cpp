@@ -7,7 +7,7 @@
 #include "common_SocketException.h"
 
 #define QUIT_COMMAND "QUIT"
-#define NEW_CLIENT_CODE "230 "
+#define NEW_CLIENT_CODE "220 "
 #define NEW_CLIENT_KEY "newClient"
 
 ThClient::ThClient(Socket skt, std::map<std::string,std::string> &cfg, DirectoryOrganizer& dir_org) :

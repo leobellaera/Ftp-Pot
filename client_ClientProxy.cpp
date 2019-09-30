@@ -17,8 +17,7 @@
 #define RMD_S "250"
 #define PWD "257"
 #define USER "331"
-#define UNKNOWN "500"
-#define UNLOGGED "530"
+#define COMMAND_ERR "530"
 #define DIR_FAIL "550"
 
 ClientProxy::ClientProxy(const char* host, const char* service) :
@@ -50,7 +49,7 @@ void ClientProxy::recvSvAnswer(std::string& answer) {
 
 bool ClientProxy::recvSvMessage(std::string &line) {
     const std::vector<std::string> tokens = {HELP, SYST, QUIT,
-        LIST, PASS_S, RMD_S, PWD, USER, UNKNOWN, UNLOGGED, DIR_FAIL};
+        LIST, PASS_S, RMD_S, PWD, USER, COMMAND_ERR, DIR_FAIL};
     bool ans_totally_received = false;
     char received_char = '\0';
     while (true) {
