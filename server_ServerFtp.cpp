@@ -15,6 +15,9 @@ void ServerFtp::run() {
     acceptor_thread.start();
     char c = '\0';
     while (c != STOP_SV_KEY) {
+        if (std::cin.eof()) {
+            break;
+        }
         std::cin >> c;
     }
     acceptor_thread.stop();
