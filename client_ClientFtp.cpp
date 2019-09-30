@@ -20,7 +20,7 @@ void ClientFtp::run() {
     while (true) {
         std::getline(std::cin, command);
         if (std::cin.eof()) break;
-        if (!proxy.executeCommand(command, sv_msg)) { //error occurred
+        if (!proxy.executeCommand(command, sv_msg)) {
             return;
         }
         std::cout << sv_msg;

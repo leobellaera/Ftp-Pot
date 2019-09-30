@@ -4,7 +4,6 @@
 
 #include "server_ServerFtp.h"
 #include "server_CfgMapBuilderException.h"
-#include "common_SocketException.h"
 #include <iostream>
 
 #define INVALID_ARGS_AMOUNT_MSG "Invalid number of arguments"
@@ -21,15 +20,11 @@ int main(int argc, char* argv[]) {
     try {
         ServerFtp sv(argv[CONFIG_PATH_POS], argv[PORT_POS], BACKLOG);
         sv.run();
-    } catch (const CfgMapBuilderException& e) {
-        std::cerr << e.what() << std::endl;
-        return 1;
-    } catch (const SocketException& e) {
-        std::cerr << e.what() << std::endl;
+    } catch (const std::exception &e) {
+        std::cerr << e.what();
         return 1;
     } catch (...) {
         std::cerr << UNKNOWN_ERROR_MSG << std::endl;
-        return 1;
     }
     return 0;
 }

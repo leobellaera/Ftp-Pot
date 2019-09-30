@@ -11,13 +11,13 @@
 #include <cstring>
 #include <iostream>
 
-#define INIT_ERROR_MSG "Error occurred while trying to bind and listen"
 #define ACCEPT_ERROR_MSG "Error occurred while trying to accept client"
 
 AcceptorSocket::AcceptorSocket(int backlog, const char* service) :
     fd(-1) {
     if (this->bindAndListen(backlog, service) == 1) {
-        throw SocketException(INIT_ERROR_MSG);
+        this->close();
+        throw SocketException();
     }
 }
 

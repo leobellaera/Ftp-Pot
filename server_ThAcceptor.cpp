@@ -5,6 +5,7 @@
 #include "server_ThAcceptor.h"
 #include "common_SocketException.h"
 #include "server_ThClient.h"
+#include <iostream>
 
 ThAcceptor::ThAcceptor(DirectoryOrganizer& dir_organizer, std::map<std::string, std::string>& cfg, const char* service, int backlog) :
     acceptor_skt(backlog, service),
@@ -20,6 +21,7 @@ void ThAcceptor::run() {
             thclient->start();
             clients.push_back(thclient);
         } catch (const SocketException &e) {
+            std::cerr << e.what();
             return;
         }
         this->deleteDeadClients();

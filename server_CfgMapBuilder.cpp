@@ -6,18 +6,17 @@
 #include "server_CfgMapBuilderException.h"
 #include <sstream>
 #define DELIM_CHAR '='
-#define OPENING_ERROR_MSG "An error occurred while trying to open the config file."
-#define READING_ERROR_MSG "An error occurred while trying to read the config file."
+#define OPENING_ERROR_MSG "An error occurred while trying to open the config file.\n"
+#define READING_ERROR_MSG "An error occurred while trying to read the config file.\n"
 
 CfgMapBuilder::CfgMapBuilder(const char* file_path) {
     file.exceptions(std::ifstream::badbit);
     file.open(file_path);
-    if (!file.good()) {
+    if (!file.is_open()) {
         throw CfgMapBuilderException(OPENING_ERROR_MSG);
     }
     try {
         this->buildMap();
-        file.close();
     } catch (std::ios_base::failure& e) {
         throw CfgMapBuilderException(READING_ERROR_MSG);
     }

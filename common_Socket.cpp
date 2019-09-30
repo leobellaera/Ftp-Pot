@@ -10,14 +10,14 @@
 #include <unistd.h>
 #include <cstdlib>
 
-#define INIT_ERROR_MSG "Error occurred while trying to establish connection"
-#define SEND_ERROR_MSG "Error occurred while trying to send message"
-#define RECV_ERROR_MSG "Error occurred while trying to receive message"
+#define SEND_ERROR_MSG "Error occurred while trying to send message\n"
+#define RECV_ERROR_MSG "Error occurred while trying to receive message\n"
 
 Socket::Socket(const char* host, const char* service) :
     fd(-1) {
     if (this->connect(host, service) == 1) {
-        throw SocketException(INIT_ERROR_MSG);
+        this->close();
+        throw SocketException();
     }
 }
 
