@@ -15,17 +15,21 @@
 
 int main(int argc, char* argv[]) {
     if (argc != 3) {
-        std::cout<<INVALID_ARGS_AMOUNT_MSG<<std::endl;
+        std::cerr<<INVALID_ARGS_AMOUNT_MSG<<std::endl;
+        return 1;
     }
     try {
         ServerFtp sv(argv[CONFIG_PATH_POS], argv[PORT_POS], BACKLOG);
         sv.run();
     } catch (const CfgMapBuilderException& e) {
-        std::cout << e.what() << std::endl;
+        std::cerr << e.what() << std::endl;
+        return 1;
     } catch (const SocketException& e) {
-        std::cout << e.what() << std::endl;
+        std::cerr << e.what() << std::endl;
+        return 1;
     } catch (...) {
-        std::cout << UNKNOWN_ERROR_MSG << std::endl;
+        std::cerr << UNKNOWN_ERROR_MSG << std::endl;
+        return 1;
     }
     return 0;
 }
