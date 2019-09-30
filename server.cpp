@@ -15,7 +15,7 @@
 
 int main(int argc, char* argv[]) {
     if (argc != 3) {
-        std::cerr<<INVALID_ARGS_AMOUNT_MSG<<std::endl;
+        std::cerr << INVALID_ARGS_AMOUNT_MSG << std::endl;
         return 1;
     }
     try {
