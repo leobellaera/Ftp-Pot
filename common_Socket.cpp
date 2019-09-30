@@ -12,12 +12,13 @@
 
 #define SEND_ERROR_MSG "Error occurred while trying to send message\n"
 #define RECV_ERROR_MSG "Error occurred while trying to receive message\n"
+#define EMPTY_MSG ""
 
 Socket::Socket(const char* host, const char* service) :
     fd(-1) {
     if (this->connect(host, service) == 1) {
         this->close();
-        throw SocketException();
+        throw SocketException(EMPTY_MSG);
     }
 }
 
@@ -38,7 +39,6 @@ int Socket::connect(const char* host, const char* service) {
         return 1;
     }
     if (!this->establishConnection(result)) {
-        std::cerr << "Error: connection couldn't been established\n";
         freeaddrinfo(result);
         return 1;
     }
