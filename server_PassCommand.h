@@ -16,7 +16,7 @@ private:
     std::string pass;
     Login& login;
 public:
-    PassCommand(std::string pass,
+    PassCommand(std::string& pass,
             std::map<std::string,std::string>& cfg, Login& login);
     std::string execute() override;
     ~PassCommand() override;

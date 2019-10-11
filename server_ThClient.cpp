@@ -20,10 +20,9 @@ ThClient::ThClient(Socket skt,
     finished(false) {}
 
 void ThClient::run() {
-    std::string input;
     this->sendWelcomeMsgToClient();
     while (!finished) {
-        input.clear();
+        std::string input;
         try {
             proxy.receiveClientCommand(input);
             this->executeCommand(input);
