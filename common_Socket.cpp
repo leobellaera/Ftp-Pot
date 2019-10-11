@@ -7,19 +7,18 @@
 #include <sys/socket.h>
 #include <iostream>
 #include <cstring>
+#include <string>
 #include <unistd.h>
 #include <cstdlib>
 
 #define SEND_ERROR_MSG "Error occurred while trying to send message\n"
 #define RECV_ERROR_MSG "Error occurred while trying to receive message\n"
-#define EMPTY_MSG ""
+#define CONNECT_ERROR_MSG "Error occurred while trying to\
+ establish connection\n"
 
 Socket::Socket(const char* host, const char* service) :
     fd(-1) {
-    if (this->connect(host, service) == 1) {
-        this->close();
-        throw SocketException(EMPTY_MSG);
-    }
+    this->connect(host, service);
 }
 
 Socket::Socket(int fd) :
@@ -30,51 +29,47 @@ Socket::Socket(Socket &&other) noexcept {
     other.fd = -1;
 }
 
-int Socket::connect(const char* host, const char* service) {
-    struct addrinfo *result = nullptr;
-    int s = this->getAddressInfo(&result, host, service);
-    if (s != 0) {
-        std::cerr << "Error in getaddrinfo: " << gai_strerror(s) << std::endl;;
-        freeaddrinfo(result);
-        return 1;
-    }
-    if (!this->establishConnection(result)) {
-        freeaddrinfo(result);
-        return 1;
-    }
-    freeaddrinfo(result);
-    return 0;
+void Socket::connect(const char* host, const char* service) {
+    struct addrinfo *result = this->getAddressInfo(host, service);
+    this->establishConnection(result);
 }
 
-bool Socket::establishConnection(addrinfo* result) {
+void Socket::establishConnection(addrinfo* result) {
     struct addrinfo* ptr;
-    int s;
-    bool connection_established = false;
-    for (ptr = result; ptr != nullptr && !connection_established ;
-            ptr = ptr->ai_next) {
+    bool success = false;
+    for (ptr = result; ptr != nullptr && !success ; ptr = ptr->ai_next) {
         fd = socket(ptr->ai_family, ptr->ai_socktype, ptr->ai_protocol);
         if (fd == -1) {
             std::cerr << "Error: " << strerror(errno) << std::endl;
         } else {
-            s = ::connect(fd, ptr->ai_addr, ptr->ai_addrlen);
-            if (s == -1) {
+            success = (::connect(fd, ptr->ai_addr, ptr->ai_addrlen) != -1);
+            if (!success) {
                 std::cerr << "Error: " << strerror(errno) << std::endl;
             }
-            connection_established = (s != -1);
         }
     }
-    return connection_established;
+    freeaddrinfo(result);
+    if (!success) {
+        this->close();
+        throw SocketException(CONNECT_ERROR_MSG);
+    }
 }
 
-
-int Socket::getAddressInfo(struct addrinfo **addrinfo_ptr,
-        const char* host, const char* service) {
+addrinfo* Socket::getAddressInfo(const char* host, const char* service) {
+    struct addrinfo* addr_info;
     struct addrinfo hints;
     memset(&hints, 0, sizeof(struct addrinfo));
     hints.ai_family = AF_INET;
     hints.ai_socktype = SOCK_STREAM;
     hints.ai_flags = 0;
-    return getaddrinfo(host, service, &hints, addrinfo_ptr);
+    int s = getaddrinfo(host, service, &hints, &addr_info);
+    if (s != 0) {
+        freeaddrinfo(addr_info);
+        std::string err = std::string("Error in getaddrinfo: ")
+                + gai_strerror(s) + '\n';
+        throw SocketException(err);
+    }
+    return addr_info;
 }
 
 void Socket::sendMessage(const char* buffer, int size) {

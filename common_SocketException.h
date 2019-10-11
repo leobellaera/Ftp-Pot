@@ -6,10 +6,11 @@
 #define TP_SOCKETEXCEPTION_H
 
 #include <stdexcept>
+#include <string>
 
 class SocketException : public std::runtime_error {
 public:
-    explicit SocketException(const char* error) : runtime_error(error) {}
+    explicit SocketException(std::string error) : runtime_error(error.c_str()) {}
 };
 
 #endif //TP_SOCKETEXCEPTION_H

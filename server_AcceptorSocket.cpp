@@ -9,17 +9,15 @@
 #include <netdb.h>
 #include <unistd.h>
 #include <cstring>
+#include <string>
 #include <iostream>
 
 #define ACCEPT_ERROR_MSG "Error occurred while trying to accept client\n"
-#define EMPTY_MSG ""
+#define BIND_AND_LISTEN_ERR_MSG "Error occurred while trying to bind and listen\n"
 
 AcceptorSocket::AcceptorSocket(int backlog, const char* service) :
     fd(-1) {
-    if (this->bindAndListen(backlog, service) == 1) {
-        this->close();
-        throw SocketException(EMPTY_MSG);
-    }
+    this->bindAndListen(backlog, service);
 }
 
 Socket AcceptorSocket::accept() {
@@ -30,35 +28,31 @@ Socket AcceptorSocket::accept() {
     return std::move(Socket(peer_fd));
 }
 
-int AcceptorSocket::bindAndListen(int backlog, const char* service) {
+void AcceptorSocket::bindAndListen(int backlog, const char* service) {
+    addrinfo* result = this->getAddressInfo(service);
+    bool done = false;
     struct addrinfo *ptr = nullptr;
-    int s = this->getAddressInfo(&ptr, service);
-    if (s != 0) {
-        std::cerr << "Error in getaddrinfo: " << gai_strerror(s) << std::endl;
-        return 1;
+    for (ptr = result; ptr != nullptr && !done ; ptr = ptr->ai_next) {
+        fd = socket(ptr->ai_family, ptr->ai_socktype, ptr->ai_protocol);
+        if (fd == -1) {
+            std::cerr << "Error: " << strerror(errno) << std::endl;
+        }
+        if (bind(ptr) == 0 && listen(backlog) == 0) {
+            done = true;
+        }
     }
-    fd = socket(ptr->ai_family, ptr->ai_socktype, ptr->ai_protocol);
-    if (fd == -1) {
-        std::cerr << "Error: " << strerror(errno) << std::endl;
-        freeaddrinfo(ptr);
-        return 1;
+    freeaddrinfo(result);
+    if (!done) {
+        this->close();
+        throw SocketException(BIND_AND_LISTEN_ERR_MSG);
     }
-    if (bind(ptr) == 1) {
-        freeaddrinfo(ptr);
-        return 1;
-    }
-    freeaddrinfo(ptr);
-    if (listen(backlog) == 1) {
-        return 1;
-    }
-    return 0;
 }
 
-int AcceptorSocket::bind(struct addrinfo* ptr) {
+int AcceptorSocket::bind(addrinfo* ptr) {
     int s = ::bind(fd, ptr->ai_addr, ptr->ai_addrlen);
     if (s == -1) {
         std::cerr << "Error: " << strerror(errno) << std::endl;
-        return 1;
+        return -1;
     }
     return 0;
 }
@@ -67,19 +61,26 @@ int AcceptorSocket::listen(int backlog) {
     int s = ::listen(fd, backlog);
     if (s == -1) {
         std::cerr << "Error: " << strerror(errno) << std::endl;
-        return 1;
+        return -1;
     }
     return 0;
 }
 
-int AcceptorSocket::getAddressInfo(struct addrinfo **addrinfo_ptr,
-        const char* service) {
+addrinfo* AcceptorSocket::getAddressInfo(const char* service) {
+    struct addrinfo* addr_info;
     struct addrinfo hints;
     memset(&hints, 0, sizeof(struct addrinfo));
     hints.ai_family = AF_INET;
     hints.ai_socktype = SOCK_STREAM;
     hints.ai_flags = AI_PASSIVE;
-    return getaddrinfo(nullptr, service, &hints, addrinfo_ptr);
+    int s = getaddrinfo(nullptr, service, &hints, &addr_info);
+    if (s != 0) {
+        freeaddrinfo(addr_info);
+        std::string err = std::string("Error in getaddrinfo: ")
+                + gai_strerror(s) + '\n';
+        throw SocketException(err);
+    }
+    return addr_info;
 }
 
 void AcceptorSocket::close() {

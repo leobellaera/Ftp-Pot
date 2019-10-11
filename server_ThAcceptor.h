@@ -8,6 +8,7 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <atomic>
 #include "server_AcceptorSocket.h"
 #include "server_DirectoryOrganizer.h"
 #include "server_ThClient.h"
@@ -19,6 +20,7 @@ private:
     DirectoryOrganizer& dir_organizer;
     std::map<std::string, std::string>& cfg;
     std::vector<ThClient*> clients;
+    std::atomic<bool> finished;
     void deleteDeadClients();
 public:
     ThAcceptor(DirectoryOrganizer& dir_organizer,

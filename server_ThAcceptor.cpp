@@ -12,11 +12,11 @@ ThAcceptor::ThAcceptor(DirectoryOrganizer& dir_organizer,
         const char* service, int backlog) :
     acceptor_skt(backlog, service),
     dir_organizer(dir_organizer),
-    cfg(cfg) {}
-
+    cfg(cfg),
+    finished(false) {}
 
 void ThAcceptor::run() {
-    while (true) {
+    while (!finished) {
         try {
             Socket skt = acceptor_skt.accept();
             ThClient* thclient = new ThClient(std::move(skt),
@@ -24,7 +24,7 @@ void ThAcceptor::run() {
             thclient->start();
             clients.push_back(thclient);
         } catch (const SocketException &e) {
-            std::cerr << e.what();
+            if (!finished) std::cerr << e.what();
             return;
         }
         this->deleteDeadClients();
@@ -52,6 +52,7 @@ void ThAcceptor::stop() {
         delete clients[i];
     }
     acceptor_skt.close();
+    finished = true;
 }
 
 ThAcceptor::~ThAcceptor() {}

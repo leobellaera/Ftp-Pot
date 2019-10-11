@@ -10,10 +10,10 @@
 class AcceptorSocket {
 private:
     int fd;
-    int getAddressInfo(struct addrinfo **addrinfo_ptr, const char* service);
-    int bindAndListen(int backlog, const char* service);
+    addrinfo* getAddressInfo(const char* service);
+    void bindAndListen(int backlog, const char* service);
     int listen(int backlog);
-    int bind(struct addrinfo* ptr);
+    int bind(addrinfo* ptr);
 public:
     AcceptorSocket(int backlog, const char* service);
     Socket accept();
