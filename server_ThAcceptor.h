@@ -9,14 +9,14 @@
 #include <map>
 #include <vector>
 #include <atomic>
-#include "server_AcceptorSocket.h"
+#include "common_Socket.h"
 #include "server_DirectoryOrganizer.h"
 #include "server_ThClient.h"
 #include "server_Thread.h"
 
 class ThAcceptor : public Thread {
 private:
-    AcceptorSocket acceptor_skt;
+    Socket acceptor_skt;
     DirectoryOrganizer& dir_organizer;
     std::map<std::string, std::string>& cfg;
     std::vector<ThClient*> clients;

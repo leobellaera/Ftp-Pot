@@ -9,13 +9,17 @@
 class Socket {
 private:
     int fd;
-    void connect(const char* host, const char* service);
-    void establishConnection(addrinfo* result);
-    addrinfo* getAddressInfo(const char* host, const char* service);
+    explicit Socket(int fd);
+    int listen(int backlog);
+    int bind(addrinfo* ptr);
+    addrinfo* getAddrInfo(const char* host, const char* port, int flags);
+    bool iterateAddrInfo(addrinfo* result, bool passive, int backlog);
+    bool operationalizeSocket(addrinfo* ptr, int backlog, bool passive);
 public:
     Socket(const char* host, const char* service);
-    explicit Socket(int fd);
+    Socket(int backlog, const char* service);
     Socket(Socket &&other) noexcept;
+    Socket accept();
     void sendMessage(const char* buffer, int size);
     void recvMessage(char* buffer, int size);
     void close();
