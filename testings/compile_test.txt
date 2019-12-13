@@ -1,2 +1,16 @@
 g++ -std=c++11 -ggdb -pedantic -Wall -o main_server.exe main_server_test.cpp AcceptorSocket.cpp Socket.cpp
 g++ -std=c++11 -ggdb -pedantic -Wall -o main_client.exe main_client_test.cpp FtpClient.cpp ClientProxy.cpp Socket.cpp
+
+
+/*void CfgMapBuilder::printConfig() {
+    std::map<std::string, std::string>::iterator it = data.begin();
+    while (it != data.end()) {
+        std::string key = it->first;
+        std::string value = it->second;
+        std::cout << key << " : " << value << std::endl;
+        it++;
+    }
+}*/
+
+
+g++ -std=c++11 -ggdb -pedantic -Wall -o main_thclient.exe ThClient.cpp Thread.cpp CfgMapBuilder.cpp Command.cpp UnknownCommand.cpp UserCommand.cpp PassCommand.cpp QuitCommand.cpp Login.cpp HelpCommand.cpp PwdCommand.cpp SystCommand.cpp DirectoryOrganizer.cpp  main_thclient.cpp RmdCommand.cpp MkdCommand.cpp ListCommand.cpp -pthread
